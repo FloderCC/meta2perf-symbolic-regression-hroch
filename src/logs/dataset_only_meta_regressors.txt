@@ -1,0 +1,21 @@
+2025-10-28 10:49:12,430 MainProcess INFO: Results for the model LinearRegression:
+2025-10-28 10:49:12,430 MainProcess INFO: Train dataset (18658 rows): R^2: 0.026, Adjusted R^2: 0.025, sMAPE: 0.436, MAE: 0.245
+2025-10-28 10:49:12,430 MainProcess INFO: Test dataset (4665 rows): R^2: 0.029, Adjusted R^2: 0.026, sMAPE: 0.436, MAE: 0.244
+2025-10-28 10:49:12,430 MainProcess INFO: Selected hyperparameters: Default parameters (no tuning)
+2025-10-28 10:49:15,652 MainProcess INFO: Results for the model DecisionTreeRegressor:
+2025-10-28 10:49:15,653 MainProcess INFO: Train dataset (18658 rows): R^2: 0.5, Adjusted R^2: 0.5, sMAPE: 0.307, MAE: 0.152
+2025-10-28 10:49:15,653 MainProcess INFO: Test dataset (4665 rows): R^2: 0.455, Adjusted R^2: 0.453, sMAPE: 0.317, MAE: 0.158
+2025-10-28 10:49:15,653 MainProcess INFO: Selected hyperparameters: {'max_depth': 8, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5}
+2025-10-28 10:50:14,838 MainProcess INFO: Results for the model RandomForestRegressor:
+2025-10-28 10:50:14,839 MainProcess INFO: Train dataset (18658 rows): R^2: 0.514, Adjusted R^2: 0.514, sMAPE: 0.299, MAE: 0.149
+2025-10-28 10:50:14,839 MainProcess INFO: Test dataset (4665 rows): R^2: 0.468, Adjusted R^2: 0.467, sMAPE: 0.31, MAE: 0.156
+2025-10-28 10:50:14,839 MainProcess INFO: Selected hyperparameters: {'bootstrap': False, 'max_depth': 8, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+2025-10-28 10:50:37,327 MainProcess INFO: Results for the model GradientBoostingRegressor:
+2025-10-28 10:50:37,327 MainProcess INFO: Train dataset (18658 rows): R^2: 0.509, Adjusted R^2: 0.509, sMAPE: 0.303, MAE: 0.152
+2025-10-28 10:50:37,327 MainProcess INFO: Test dataset (4665 rows): R^2: 0.47, Adjusted R^2: 0.468, sMAPE: 0.312, MAE: 0.158
+2025-10-28 10:50:37,328 MainProcess INFO: Selected hyperparameters: {'learning_rate': 0.03, 'max_depth': 5, 'n_estimators': 100, 'subsample': 1.0}
+2025-10-28 10:50:51,021 MainProcess INFO: Results for the model MLPRegressor:
+2025-10-28 10:50:51,021 MainProcess INFO: Train dataset (18658 rows): R^2: 0.216, Adjusted R^2: 0.216, sMAPE: 0.385, MAE: 0.207
+2025-10-28 10:50:51,021 MainProcess INFO: Test dataset (4665 rows): R^2: 0.193, Adjusted R^2: 0.191, sMAPE: 0.393, MAE: 0.211
+2025-10-28 10:50:51,021 MainProcess INFO: Selected hyperparameters: {'activation': 'tanh', 'alpha': 0.001, 'hidden_layer_sizes': (200,)}
+2025-10-28 10:50:51,022 MainProcess INFO: Benchmark models evaluation completed.

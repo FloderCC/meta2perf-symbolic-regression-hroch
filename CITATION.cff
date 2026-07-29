@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software or its derived meta-dataset, please cite the accompanying manuscript."
+title: "Meta2Perf: Tabular-classifier performance modeling with symbolic regression"
+type: software
+version: 1.0.0
+date-released: 2026-07-29
+authors:
+  - family-names: Corona
+    given-names: Julio
+  - family-names: Teixeira
+    given-names: Rafael
+  - family-names: Antunes
+    given-names: Mário
+  - family-names: Aguiar
+    given-names: Rui L.
+preferred-citation:
+  type: article
+  title: "Exploring Tabular Classifier Performance from Dataset and Algorithm Descriptors with Symbolic Regression"
+  authors:
+    - family-names: Corona
+      given-names: Julio
+    - family-names: Teixeira
+      given-names: Rafael
+    - family-names: Antunes
+      given-names: Mário
+    - family-names: Aguiar
+      given-names: Rui L.

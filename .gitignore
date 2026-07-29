@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Raw third-party datasets are intentionally not redistributed.
+src/datasets/*/*.csv
+
+# Partial outputs created by the parallel tuning stage.
+src/results/base_classifier_hyperparameters_seed_*.csv

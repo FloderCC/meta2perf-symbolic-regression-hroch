@@ -1,0 +1,2 @@
+https://www.kaggle.com/datasets/tejashvi14/engineering-placements-prediction
+class: PlacedOrNot

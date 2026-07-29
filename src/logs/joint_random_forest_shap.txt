@@ -1,0 +1,10 @@
+2025-10-27 17:17:52,591 MainProcess INFO: Results for the model RandomForestRegressor:
+2025-10-27 17:17:52,592 MainProcess INFO: Train dataset (18658 rows): R^2: 0.977, Adjusted R^2: 0.977, sMAPE: 0.077, MAE: 0.025
+2025-10-27 17:17:52,592 MainProcess INFO: Test dataset (4665 rows): R^2: 0.923, Adjusted R^2: 0.923, sMAPE: 0.131, MAE: 0.046
+2025-10-27 17:17:52,592 MainProcess INFO: Selected hyperparameters: {'bootstrap': False, 'max_depth': 16, 'max_features': 0.5, 'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 100}
+2025-10-27 17:17:52,593 MainProcess INFO: Hyperparameter tuning and evaluation completed.
+2025-10-27 17:17:52,593 MainProcess INFO: Explaining the final model with best hyperparameters.
+2025-10-27 17:25:43,878 MainProcess INFO: SHAP explanation completed. Feature relevance scores:
+2025-10-27 17:25:43,878 MainProcess INFO: [0.0155387244321892, 0.08392635568362541, 0.01899605203507021, 0.0171454101193659, 0.00842252436015099, 0.008961702337084203, 0.004814474453121843, 0.009615550430965281, 0.031032761362213016, 0.002765768355861129, 0.008468482690683347, 0.06255794064227714, 0.052928236146963785, 0.07004764553426743, 0.005975406693164138, 0.02202854974400945, 0.0067791090467023115, 0.042030186833070124, 0.008279988113851494]
+2025-10-27 17:25:43,878 MainProcess INFO: Input feature names:
+2025-10-27 17:25:43,878 MainProcess INFO: ['class_ent', 'eq_num_attr', 'gravity', 'inst_to_attr', 'nr_attr', 'nr_bin', 'nr_class', 'nr_cor_attr', 'nr_inst', 'nr_norm', 'nr_outliers', 'ns_ratio', 'Processing Units Number', 'Model Type', 'Training Complexity', 'Prediction Complexity', 'Regularization', 'Robust to Outliers', 'Representational Capacity']

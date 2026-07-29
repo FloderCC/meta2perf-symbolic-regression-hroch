@@ -1,0 +1,8 @@
+HROCH
+matplotlib
+numpy
+pandas
+pymfe
+scikit-learn
+shap
+sklearn-genetic-opt
