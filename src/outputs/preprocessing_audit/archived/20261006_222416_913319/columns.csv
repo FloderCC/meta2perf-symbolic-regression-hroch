@@ -1,0 +1,392 @@
+﻿dataset,seed,fraction,stage,fold,partition,column,is_target,old_dtype,new_dtype,changed_cells,max_abs_delta,raw_missing,raw_infinite,old_nonfinite,new_nonfinite,global_imputation_mean,fit_imputation_mean,global_categories,fit_categories,unknown_cells,unknown_examples
+Water Quality and Potability,5,0.2,heldout,0,train,ph,False,float64,float64,66,0.007815962529519105,66,0,0,0,7.06279406681506,7.0706100293445795,,,0,[]
+Water Quality and Potability,5,0.2,heldout,0,train,Sulfate,False,float64,float64,127,0.9982834289683069,127,0,0,0,333.00020527028823,333.99848869925654,,,0,[]
+Water Quality and Potability,5,0.2,heldout,0,train,Trihalomethanes,False,float64,float64,25,0.002837832107204008,25,0,0,0,66.83612795970134,66.83896579180855,,,0,[]
+Water Quality and Potability,5,0.2,heldout,0,test,ph,False,float64,float64,22,0.007815962529519105,22,0,0,0,7.06279406681506,7.0706100293445795,,,0,[]
+Water Quality and Potability,5,0.2,heldout,0,test,Sulfate,False,float64,float64,24,0.9982834289683069,24,0,0,0,333.00020527028823,333.99848869925654,,,0,[]
+Water Quality and Potability,5,0.2,heldout,0,test,Trihalomethanes,False,float64,float64,5,0.002837832107204008,5,0,0,0,66.83612795970134,66.83896579180855,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,train,ph,False,float64,float64,48,0.08097114530958294,48,0,0,0,7.06279406681506,6.9818229215054775,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,train,Sulfate,False,float64,float64,96,1.337959363903792,96,0,0,0,333.00020527028823,334.338164634192,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,train,Trihalomethanes,False,float64,float64,18,0.07989786061003201,18,0,0,0,66.83612795970134,66.91602582031138,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,validation,ph,False,float64,float64,18,0.08097114530958294,18,0,0,0,7.06279406681506,6.9818229215054775,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,validation,Sulfate,False,float64,float64,31,1.337959363903792,31,0,0,0,333.00020527028823,334.338164634192,,,0,[]
+Water Quality and Potability,5,0.2,cv,1,validation,Trihalomethanes,False,float64,float64,7,0.07989786061003201,7,0,0,0,66.83612795970134,66.91602582031138,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,train,ph,False,float64,float64,51,0.016848829236868035,51,0,0,0,7.06279406681506,7.079642896051928,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,train,Sulfate,False,float64,float64,91,0.9725658098495273,91,0,0,0,333.00020527028823,333.97277108013776,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,train,Trihalomethanes,False,float64,float64,17,0.09646964005222003,17,0,0,0,66.83612795970134,66.73965831964912,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,validation,ph,False,float64,float64,15,0.016848829236868035,15,0,0,0,7.06279406681506,7.079642896051928,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,validation,Sulfate,False,float64,float64,36,0.9725658098495273,36,0,0,0,333.00020527028823,333.97277108013776,,,0,[]
+Water Quality and Potability,5,0.2,cv,2,validation,Trihalomethanes,False,float64,float64,8,0.09646964005222003,8,0,0,0,66.83612795970134,66.73965831964912,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,train,ph,False,float64,float64,53,0.014329441381932817,53,0,0,0,7.06279406681506,7.077123508196993,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,train,Sulfate,False,float64,float64,93,1.9848333107171925,93,0,0,0,333.00020527028823,334.9850385810054,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,train,Trihalomethanes,False,float64,float64,21,0.02492683365346693,21,0,0,0,66.83612795970134,66.86105479335481,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,validation,ph,False,float64,float64,13,0.014329441381932817,13,0,0,0,7.06279406681506,7.077123508196993,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,validation,Sulfate,False,float64,float64,34,1.9848333107171925,34,0,0,0,333.00020527028823,334.9850385810054,,,0,[]
+Water Quality and Potability,5,0.2,cv,3,validation,Trihalomethanes,False,float64,float64,4,0.02492683365346693,4,0,0,0,66.83612795970134,66.86105479335481,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,train,ph,False,float64,float64,46,0.08080653596109144,46,0,0,0,7.06279406681506,7.143600602776152,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,train,Sulfate,False,float64,float64,101,0.33418916084906414,101,0,0,0,333.00020527028823,332.66601610943917,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,train,Trihalomethanes,False,float64,float64,19,0.003439410364364903,19,0,0,0,66.83612795970134,66.83956737006571,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,validation,ph,False,float64,float64,20,0.08080653596109144,20,0,0,0,7.06279406681506,7.143600602776152,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,validation,Sulfate,False,float64,float64,26,0.33418916084906414,26,0,0,0,333.00020527028823,332.66601610943917,,,0,[]
+Water Quality and Potability,5,0.2,cv,4,validation,Trihalomethanes,False,float64,float64,6,0.003439410364364903,6,0,0,0,66.83612795970134,66.83956737006571,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,train,ph,False,float64,float64,388,0.0033080930516504736,388,0,0,0,7.080794504276835,7.084102597328486,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,train,Sulfate,False,float64,float64,625,0.3148835258459144,625,0,0,0,333.7757766108135,333.4608930849676,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,train,Trihalomethanes,False,float64,float64,132,0.016265965798723414,132,0,0,0,66.39629294676803,66.3800269809693,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,test,ph,False,float64,float64,103,0.0033080930516504736,103,0,0,0,7.080794504276835,7.084102597328486,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,test,Sulfate,False,float64,float64,156,0.3148835258459144,156,0,0,0,333.7757766108135,333.4608930849676,,,0,[]
+Water Quality and Potability,5,1.0,heldout,0,test,Trihalomethanes,False,float64,float64,30,0.016265965798723414,30,0,0,0,66.39629294676803,66.3800269809693,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,train,ph,False,float64,float64,289,0.0018726914787015048,289,0,0,0,7.080794504276835,7.082667195755537,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,train,Sulfate,False,float64,float64,461,0.1126694727261679,461,0,0,0,333.7757766108135,333.8884460835397,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,train,Trihalomethanes,False,float64,float64,98,0.13610710819440897,98,0,0,0,66.39629294676803,66.26018583857362,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,validation,ph,False,float64,float64,99,0.0018726914787015048,99,0,0,0,7.080794504276835,7.082667195755537,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,validation,Sulfate,False,float64,float64,164,0.1126694727261679,164,0,0,0,333.7757766108135,333.8884460835397,,,0,[]
+Water Quality and Potability,5,1.0,cv,1,validation,Trihalomethanes,False,float64,float64,34,0.13610710819440897,34,0,0,0,66.39629294676803,66.26018583857362,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,train,ph,False,float64,float64,295,0.014419234675742132,295,0,0,0,7.080794504276835,7.066375269601093,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,train,Sulfate,False,float64,float64,491,0.23396401705582548,491,0,0,0,333.7757766108135,333.5418125937577,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,train,Trihalomethanes,False,float64,float64,102,0.253603156305104,102,0,0,0,66.39629294676803,66.14268979046292,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,validation,ph,False,float64,float64,93,0.014419234675742132,93,0,0,0,7.080794504276835,7.066375269601093,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,validation,Sulfate,False,float64,float64,134,0.23396401705582548,134,0,0,0,333.7757766108135,333.5418125937577,,,0,[]
+Water Quality and Potability,5,1.0,cv,2,validation,Trihalomethanes,False,float64,float64,30,0.253603156305104,30,0,0,0,66.39629294676803,66.14268979046292,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,train,ph,False,float64,float64,296,0.03105350136538032,296,0,0,0,7.080794504276835,7.111848005642216,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,train,Sulfate,False,float64,float64,456,0.14914131934540364,456,0,0,0,333.7757766108135,333.9249179301589,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,train,Trihalomethanes,False,float64,float64,95,0.23273633559563223,95,0,0,0,66.39629294676803,66.62902928236366,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,validation,ph,False,float64,float64,92,0.03105350136538032,92,0,0,0,7.080794504276835,7.111848005642216,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,validation,Sulfate,False,float64,float64,169,0.14914131934540364,169,0,0,0,333.7757766108135,333.9249179301589,,,0,[]
+Water Quality and Potability,5,1.0,cv,3,validation,Trihalomethanes,False,float64,float64,37,0.23273633559563223,37,0,0,0,66.39629294676803,66.62902928236366,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,train,ph,False,float64,float64,284,0.005196794595345722,284,0,0,0,7.080794504276835,7.07559770968149,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,train,Sulfate,False,float64,float64,467,1.2912043250466922,467,0,0,0,333.7757766108135,332.48457228576683,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,train,Trihalomethanes,False,float64,float64,101,0.09117410671130699,101,0,0,0,66.39629294676803,66.48746705347934,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,validation,ph,False,float64,float64,104,0.005196794595345722,104,0,0,0,7.080794504276835,7.07559770968149,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,validation,Sulfate,False,float64,float64,158,1.2912043250466922,158,0,0,0,333.7757766108135,332.48457228576683,,,0,[]
+Water Quality and Potability,5,1.0,cv,4,validation,Trihalomethanes,False,float64,float64,31,0.09117410671130699,31,0,0,0,66.39629294676803,66.48746705347934,,,0,[]
+Car Insurance Data,5,0.2,heldout,0,train,CREDIT_SCORE,False,float64,float64,185,0.0008638275245630433,185,0,0,0,0.5137471946502975,0.5128833671257345,,,0,[]
+Car Insurance Data,5,0.2,heldout,0,train,ANNUAL_MILEAGE,False,float64,float64,144,60.84230497971657,144,0,0,0,11660.998354360943,11721.84065934066,,,0,[]
+Car Insurance Data,5,0.2,heldout,0,test,CREDIT_SCORE,False,float64,float64,47,0.0008638275245630433,47,0,0,0,0.5137471946502975,0.5128833671257345,,,0,[]
+Car Insurance Data,5,0.2,heldout,0,test,ANNUAL_MILEAGE,False,float64,float64,33,60.84230497971657,33,0,0,0,11660.998354360943,11721.84065934066,,,0,[]
+Car Insurance Data,5,0.2,cv,1,train,CREDIT_SCORE,False,float64,float64,136,0.0010904531203712597,136,0,0,0,0.5137471946502975,0.5126567415299262,,,0,[]
+Car Insurance Data,5,0.2,cv,1,train,ANNUAL_MILEAGE,False,float64,float64,105,116.17059541074559,105,0,0,0,11660.998354360943,11777.168949771689,,,0,[]
+Car Insurance Data,5,0.2,cv,1,validation,CREDIT_SCORE,False,float64,float64,49,0.0010904531203712597,49,0,0,0,0.5137471946502975,0.5126567415299262,,,0,[]
+Car Insurance Data,5,0.2,cv,1,validation,ANNUAL_MILEAGE,False,float64,float64,39,116.17059541074559,39,0,0,0,11660.998354360943,11777.168949771689,,,0,[]
+Car Insurance Data,5,0.2,cv,2,train,CREDIT_SCORE,False,float64,float64,135,0.004760343720568994,135,0,0,0,0.5137471946502975,0.5089868509297285,,,0,[]
+Car Insurance Data,5,0.2,cv,2,train,ANNUAL_MILEAGE,False,float64,float64,113,84.1718388313293,113,0,0,0,11660.998354360943,11745.170193192273,,,0,[]
+Car Insurance Data,5,0.2,cv,2,validation,CREDIT_SCORE,False,float64,float64,50,0.004760343720568994,50,0,0,0,0.5137471946502975,0.5089868509297285,,,0,[]
+Car Insurance Data,5,0.2,cv,2,validation,ANNUAL_MILEAGE,False,float64,float64,31,84.1718388313293,31,0,0,0,11660.998354360943,11745.170193192273,,,0,[]
+Car Insurance Data,5,0.2,cv,3,train,CREDIT_SCORE,False,float64,float64,139,0.004598028491930806,139,0,0,0,0.5137471946502975,0.5183452231422283,,,0,[]
+Car Insurance Data,5,0.2,cv,3,train,ANNUAL_MILEAGE,False,float64,float64,106,43.99652620737834,106,0,0,0,11660.998354360943,11617.001828153565,,,0,[]
+Car Insurance Data,5,0.2,cv,3,validation,CREDIT_SCORE,False,float64,float64,46,0.004598028491930806,46,0,0,0,0.5137471946502975,0.5183452231422283,,,0,[]
+Car Insurance Data,5,0.2,cv,3,validation,ANNUAL_MILEAGE,False,float64,float64,38,43.99652620737834,38,0,0,0,11660.998354360943,11617.001828153565,,,0,[]
+Car Insurance Data,5,0.2,cv,4,train,CREDIT_SCORE,False,float64,float64,145,0.00219473733576081,145,0,0,0,0.5137471946502975,0.5115524573145367,,,0,[]
+Car Insurance Data,5,0.2,cv,4,train,ANNUAL_MILEAGE,False,float64,float64,108,87.17014380755427,108,0,0,0,11660.998354360943,11748.168498168498,,,0,[]
+Car Insurance Data,5,0.2,cv,4,validation,CREDIT_SCORE,False,float64,float64,40,0.00219473733576081,40,0,0,0,0.5137471946502975,0.5115524573145367,,,0,[]
+Car Insurance Data,5,0.2,cv,4,validation,ANNUAL_MILEAGE,False,float64,float64,36,87.17014380755427,36,0,0,0,11660.998354360943,11748.168498168498,,,0,[]
+Car Insurance Data,5,1.0,heldout,0,train,CREDIT_SCORE,False,float64,float64,781,0.00053870332129069,781,0,0,0,0.515812809602791,0.5152741062815003,,,0,[]
+Car Insurance Data,5,1.0,heldout,0,train,ANNUAL_MILEAGE,False,float64,float64,767,23.859505667034682,767,0,0,0,11697.003206900365,11720.8627125674,,,0,[]
+Car Insurance Data,5,1.0,heldout,0,test,CREDIT_SCORE,False,float64,float64,201,0.00053870332129069,201,0,0,0,0.515812809602791,0.5152741062815003,,,0,[]
+Car Insurance Data,5,1.0,heldout,0,test,ANNUAL_MILEAGE,False,float64,float64,190,23.859505667034682,190,0,0,0,11697.003206900365,11720.8627125674,,,0,[]
+Car Insurance Data,5,1.0,cv,1,train,CREDIT_SCORE,False,float64,float64,597,0.00010896617399480668,597,0,0,0,0.515812809602791,0.5157038434287962,,,0,[]
+Car Insurance Data,5,1.0,cv,1,train,ANNUAL_MILEAGE,False,float64,float64,579,38.10101741249309,579,0,0,0,11697.003206900365,11735.104224312858,,,0,[]
+Car Insurance Data,5,1.0,cv,1,validation,CREDIT_SCORE,False,float64,float64,184,0.00010896617399480668,184,0,0,0,0.515812809602791,0.5157038434287962,,,0,[]
+Car Insurance Data,5,1.0,cv,1,validation,ANNUAL_MILEAGE,False,float64,float64,188,38.10101741249309,188,0,0,0,11697.003206900365,11735.104224312858,,,0,[]
+Car Insurance Data,5,1.0,cv,2,train,CREDIT_SCORE,False,float64,float64,573,0.0021710315698655336,573,0,0,0,0.515812809602791,0.5136417780329254,,,0,[]
+Car Insurance Data,5,1.0,cv,2,train,ANNUAL_MILEAGE,False,float64,float64,585,20.2636444385098,585,0,0,0,11697.003206900365,11717.266851338874,,,0,[]
+Car Insurance Data,5,1.0,cv,2,validation,CREDIT_SCORE,False,float64,float64,208,0.0021710315698655336,208,0,0,0,0.515812809602791,0.5136417780329254,,,0,[]
+Car Insurance Data,5,1.0,cv,2,validation,ANNUAL_MILEAGE,False,float64,float64,182,20.2636444385098,182,0,0,0,11697.003206900365,11717.266851338874,,,0,[]
+Car Insurance Data,5,1.0,cv,3,train,CREDIT_SCORE,False,float64,float64,588,2.28447277975663e-05,588,0,0,0,0.515812809602791,0.5158356543305885,,,0,[]
+Car Insurance Data,5,1.0,cv,3,train,ANNUAL_MILEAGE,False,float64,float64,564,22.827551009862873,564,0,0,0,11697.003206900365,11719.830757910227,,,0,[]
+Car Insurance Data,5,1.0,cv,3,validation,CREDIT_SCORE,False,float64,float64,193,2.28447277975663e-05,193,0,0,0,0.515812809602791,0.5158356543305885,,,0,[]
+Car Insurance Data,5,1.0,cv,3,validation,ANNUAL_MILEAGE,False,float64,float64,203,22.827551009862873,203,0,0,0,11697.003206900365,11719.830757910227,,,0,[]
+Car Insurance Data,5,1.0,cv,4,train,CREDIT_SCORE,False,float64,float64,585,0.00010722051185996229,585,0,0,0,0.515812809602791,0.5159200301146509,,,0,[]
+Car Insurance Data,5,1.0,cv,4,train,ANNUAL_MILEAGE,False,float64,float64,573,14.255315303431416,573,0,0,0,11697.003206900365,11711.258522203796,,,0,[]
+Car Insurance Data,5,1.0,cv,4,validation,CREDIT_SCORE,False,float64,float64,196,0.00010722051185996229,196,0,0,0,0.515812809602791,0.5159200301146509,,,0,[]
+Car Insurance Data,5,1.0,cv,4,validation,ANNUAL_MILEAGE,False,float64,float64,194,14.255315303431416,194,0,0,0,11697.003206900365,11711.258522203796,,,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,zip_code,False,int64,int64,146,19.0,0,0,0,0,,,120,101,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,id,False,int64,int64,146,36.0,0,0,0,0,,,184,147,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,city,False,int64,int64,116,9.0,0,0,0,0,,,73,64,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,Unnamed: 6,False,int64,int64,138,12.0,75,0,0,0,,,75,63,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,name,False,int64,int64,139,37.0,0,0,0,0,,,184,147,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,founded_at,False,int64,int64,147,10.0,0,0,0,0,,,80,70,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,closed_at,False,int64,int64,136,9.0,92,0,0,0,,,55,46,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,first_funding_at,False,int64,int64,144,26.0,0,0,0,0,,,159,131,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,last_funding_at,False,int64,int64,123,30.0,0,0,0,0,,,169,138,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,age_first_milestone_year,False,float64,float64,23,0.022418213238374562,23,0,0,0,2.827698051948052,2.8052798387096773,,,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,age_last_milestone_year,False,float64,float64,23,0.08709647046501878,23,0,0,0,4.769127922077922,4.682031451612903,,,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,category_code,False,int64,int64,26,1.0,0,0,0,0,,,27,26,0,[]
+Startup Success Prediction,5,0.2,heldout,0,train,object_id,False,int64,int64,146,36.0,0,0,0,0,,,184,147,0,[]
+Startup Success Prediction,5,0.2,heldout,0,test,zip_code,False,int64,int64,37,113.0,0,0,0,0,,,120,101,20,"[""98006"", ""94303"", ""43207"", ""94070"", ""33618""]"
+Startup Success Prediction,5,0.2,heldout,0,test,id,False,int64,int64,37,184.0,0,0,0,0,,,184,147,37,"[""c:12173"", ""c:60087"", ""c:10176"", ""c:170"", ""c:35579""]"
+Startup Success Prediction,5,0.2,heldout,0,test,city,False,int64,int64,32,70.0,0,0,0,0,,,73,64,9,"[""Columbus"", ""San Carlos"", ""Philadelphia"", ""Napa"", ""Cincinnati""]"
+Startup Success Prediction,5,0.2,heldout,0,test,Unnamed: 6,False,int64,int64,37,72.0,22,0,0,0,,,75,63,12,"[""Boston MA 2210"", ""Cupertino CA 95014"", ""Columbus OH 43207"", ""San Francisco CA 94107"", ""Philadelphia PA 19104""]"
+Startup Success Prediction,5,0.2,heldout,0,test,name,False,int64,int64,37,177.0,0,0,0,0,,,184,147,37,"[""Sentrigo"", ""Localocracy"", ""Yammer"", ""adBrite"", ""XtremIO""]"
+Startup Success Prediction,5,0.2,heldout,0,test,founded_at,False,int64,int64,37,77.0,0,0,0,0,,,80,70,10,"[""9/10/2008"", ""12/1/2006"", ""9/1/2005"", ""7/1/2005"", ""3/1/2010""]"
+Startup Success Prediction,5,0.2,heldout,0,test,closed_at,False,int64,int64,33,51.0,23,0,0,0,,,55,46,9,"[""2/1/2001"", ""3/1/2013"", ""1/16/2013"", ""4/25/2010"", ""11/12/2011""]"
+Startup Success Prediction,5,0.2,heldout,0,test,first_funding_at,False,int64,int64,37,159.0,0,0,0,0,,,159,131,28,"[""5/8/2007"", ""1/19/2009"", ""9/1/2004"", ""11/29/2008"", ""4/19/2007""]"
+Startup Success Prediction,5,0.2,heldout,0,test,last_funding_at,False,int64,int64,34,169.0,0,0,0,0,,,169,138,31,"[""12/21/2010"", ""2/29/2012"", ""5/1/2012"", ""12/5/2011"", ""11/29/2008""]"
+Startup Success Prediction,5,0.2,heldout,0,test,age_first_milestone_year,False,float64,float64,7,0.022418213238374562,7,0,0,0,2.827698051948052,2.8052798387096773,,,0,[]
+Startup Success Prediction,5,0.2,heldout,0,test,age_last_milestone_year,False,float64,float64,7,0.08709647046501878,7,0,0,0,4.769127922077922,4.682031451612903,,,0,[]
+Startup Success Prediction,5,0.2,heldout,0,test,category_code,False,int64,int64,8,26.0,0,0,0,0,,,27,26,1,"[""transportation""]"
+Startup Success Prediction,5,0.2,heldout,0,test,object_id,False,int64,int64,37,184.0,0,0,0,0,,,184,147,37,"[""c:12173"", ""c:60087"", ""c:10176"", ""c:170"", ""c:35579""]"
+Startup Success Prediction,5,0.2,cv,1,train,state_code,False,int64,int64,47,3.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,zip_code,False,int64,int64,109,37.0,0,0,0,0,,,120,82,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,id,False,int64,int64,109,73.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,city,False,int64,int64,108,17.0,0,0,0,0,,,73,56,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,Unnamed: 6,False,int64,int64,108,24.0,54,0,0,0,,,75,51,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,name,False,int64,int64,110,74.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,founded_at,False,int64,int64,110,24.0,0,0,0,0,,,80,56,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,closed_at,False,int64,int64,110,19.0,69,0,0,0,,,55,36,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,first_funding_at,False,int64,int64,107,58.0,0,0,0,0,,,159,99,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,last_funding_at,False,int64,int64,108,63.0,0,0,0,0,,,169,105,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,age_first_milestone_year,False,float64,float64,16,0.2408827991157776,16,0,0,0,2.827698051948052,3.0685808510638295,,,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,age_last_milestone_year,False,float64,float64,16,0.21967420558165252,16,0,0,0,4.769127922077922,4.988802127659574,,,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,state_code.1,False,int64,int64,47,3.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,category_code,False,int64,int64,17,1.0,0,0,0,0,,,27,26,0,[]
+Startup Success Prediction,5,0.2,cv,1,train,object_id,False,int64,int64,109,73.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,1,validation,state_code,False,int64,int64,22,16.0,0,0,0,0,,,24,21,3,"[""NM"", ""CO"", ""OH""]"
+Startup Success Prediction,5,0.2,cv,1,validation,zip_code,False,int64,int64,37,120.0,0,0,0,0,,,120,82,20,"[""87102"", ""94903"", ""2139"", ""98109"", ""78746""]"
+Startup Success Prediction,5,0.2,cv,1,validation,id,False,int64,int64,37,182.0,0,0,0,0,,,184,110,37,"[""c:23107"", ""c:47587"", ""c:38504"", ""c:71639"", ""c:54""]"
+Startup Success Prediction,5,0.2,cv,1,validation,city,False,int64,int64,36,68.0,0,0,0,0,,,73,56,9,"[""Albuquerque"", ""San Rafael"", ""West Chester"", ""Boulder"", ""College Park""]"
+Startup Success Prediction,5,0.2,cv,1,validation,Unnamed: 6,False,int64,int64,37,71.0,21,0,0,0,,,75,51,12,"[""Albuquerque NM 87102"", ""San Rafael CA 94903"", ""Seattle WA 98109"", ""New York NY 10016"", ""West Chester PA 19380""]"
+Startup Success Prediction,5,0.2,cv,1,validation,name,False,int64,int64,37,182.0,0,0,0,0,,,184,110,37,"[""SensorLogic"", ""Infineta Systems"", ""iosil Energy"", ""Zep Solar"", ""Wesabe""]"
+Startup Success Prediction,5,0.2,cv,1,validation,founded_at,False,int64,int64,37,78.0,0,0,0,0,,,80,56,16,"[""12/1/2005"", ""8/29/2006"", ""3/31/2009"", ""8/28/2005"", ""8/1/2006""]"
+Startup Success Prediction,5,0.2,cv,1,validation,closed_at,False,int64,int64,37,54.0,23,0,0,0,,,55,36,11,"[""3/4/2012"", ""6/30/2010"", ""1/1/2010"", ""3/3/2012"", ""8/5/2011""]"
+Startup Success Prediction,5,0.2,cv,1,validation,first_funding_at,False,int64,int64,37,156.0,0,0,0,0,,,159,99,32,"[""6/19/2007"", ""5/7/2010"", ""12/24/2009"", ""11/20/2013"", ""3/16/2008""]"
+Startup Success Prediction,5,0.2,cv,1,validation,last_funding_at,False,int64,int64,36,161.0,0,0,0,0,,,169,105,33,"[""12/13/2010"", ""6/6/2011"", ""3/17/2012"", ""11/20/2013"", ""6/1/2007""]"
+Startup Success Prediction,5,0.2,cv,1,validation,age_first_milestone_year,False,float64,float64,7,0.2408827991157776,7,0,0,0,2.827698051948052,3.0685808510638295,,,0,[]
+Startup Success Prediction,5,0.2,cv,1,validation,age_last_milestone_year,False,float64,float64,7,0.21967420558165252,7,0,0,0,4.769127922077922,4.988802127659574,,,0,[]
+Startup Success Prediction,5,0.2,cv,1,validation,state_code.1,False,int64,int64,22,16.0,0,0,0,0,,,24,21,3,"[""NM"", ""CO"", ""OH""]"
+Startup Success Prediction,5,0.2,cv,1,validation,category_code,False,int64,int64,9,1.0,0,0,0,0,,,27,26,0,[]
+Startup Success Prediction,5,0.2,cv,1,validation,object_id,False,int64,int64,37,182.0,0,0,0,0,,,184,110,37,"[""c:23107"", ""c:47587"", ""c:38504"", ""c:71639"", ""c:54""]"
+Startup Success Prediction,5,0.2,cv,2,train,state_code,False,int64,int64,30,2.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,zip_code,False,int64,int64,109,41.0,0,0,0,0,,,120,79,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,id,False,int64,int64,109,73.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,city,False,int64,int64,101,19.0,0,0,0,0,,,73,54,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,Unnamed: 6,False,int64,int64,103,24.0,56,0,0,0,,,75,51,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,name,False,int64,int64,107,74.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,founded_at,False,int64,int64,110,23.0,0,0,0,0,,,80,57,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,closed_at,False,int64,int64,100,18.0,68,0,0,0,,,55,37,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,first_funding_at,False,int64,int64,108,54.0,0,0,0,0,,,159,102,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,last_funding_at,False,int64,int64,98,64.0,0,0,0,0,,,169,104,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,age_first_milestone_year,False,float64,float64,17,0.02120517385840026,17,0,0,0,2.827698051948052,2.848903225806452,,,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,age_last_milestone_year,False,float64,float64,17,0.1191117930456631,17,0,0,0,4.769127922077922,4.650016129032259,,,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,state_code.1,False,int64,int64,30,2.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,category_code,False,int64,int64,54,3.0,0,0,0,0,,,27,24,0,[]
+Startup Success Prediction,5,0.2,cv,2,train,object_id,False,int64,int64,109,73.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,2,validation,state_code,False,int64,int64,12,24.0,0,0,0,0,,,24,21,4,"[""WI"", ""VA"", ""NJ""]"
+Startup Success Prediction,5,0.2,cv,2,validation,zip_code,False,int64,int64,37,116.0,0,0,0,0,,,120,79,22,"[""53562"", ""94402"", ""75081"", ""20166"", ""94301-1705""]"
+Startup Success Prediction,5,0.2,cv,2,validation,id,False,int64,int64,37,180.0,0,0,0,0,,,184,110,37,"[""c:167"", ""c:51745"", ""c:43458"", ""c:1637"", ""c:15652""]"
+Startup Success Prediction,5,0.2,cv,2,validation,city,False,int64,int64,35,60.0,0,0,0,0,,,73,54,11,"[""Middleton"", ""Richardson"", ""Dulles"", ""McLean"", ""Redmond""]"
+Startup Success Prediction,5,0.2,cv,2,validation,Unnamed: 6,False,int64,int64,35,68.0,19,0,0,0,,,75,51,12,"[""San Mateo CA 94402"", ""Palo Alto CA 94301-1705"", ""Tampa FL 33609"", ""Sunnyvale CA 94085"", ""Cambridge MA 2142""]"
+Startup Success Prediction,5,0.2,cv,2,validation,name,False,int64,int64,37,183.0,0,0,0,0,,,184,110,37,"[""Sway"", ""Wellcore"", ""Levanta"", ""RipCode"", ""Anystream""]"
+Startup Success Prediction,5,0.2,cv,2,validation,founded_at,False,int64,int64,37,72.0,0,0,0,0,,,80,57,13,"[""12/3/2004"", ""8/6/2006"", ""5/1/2010"", ""6/1/2010"", ""1/1/2011""]"
+Startup Success Prediction,5,0.2,cv,2,validation,closed_at,False,int64,int64,36,53.0,24,0,0,0,,,55,37,10,"[""12/2/2012"", ""7/1/2013"", ""5/9/2008"", ""7/1/2012"", ""12/6/2012""]"
+Startup Success Prediction,5,0.2,cv,2,validation,first_funding_at,False,int64,int64,36,157.0,0,0,0,0,,,159,102,29,"[""1/19/2010"", ""7/12/2010"", ""9/23/2007"", ""11/1/2006"", ""6/30/2010""]"
+Startup Success Prediction,5,0.2,cv,2,validation,last_funding_at,False,int64,int64,37,166.0,0,0,0,0,,,169,104,34,"[""1/19/2010"", ""7/12/2010"", ""9/23/2007"", ""5/11/2010"", ""2/7/2007""]"
+Startup Success Prediction,5,0.2,cv,2,validation,age_first_milestone_year,False,float64,float64,6,0.02120517385840026,6,0,0,0,2.827698051948052,2.848903225806452,,,0,[]
+Startup Success Prediction,5,0.2,cv,2,validation,age_last_milestone_year,False,float64,float64,6,0.1191117930456631,6,0,0,0,4.769127922077922,4.650016129032259,,,0,[]
+Startup Success Prediction,5,0.2,cv,2,validation,state_code.1,False,int64,int64,12,24.0,0,0,0,0,,,24,21,4,"[""WI"", ""VA"", ""NJ""]"
+Startup Success Prediction,5,0.2,cv,2,validation,category_code,False,int64,int64,18,19.0,0,0,0,0,,,27,24,2,"[""other"", ""photo_video""]"
+Startup Success Prediction,5,0.2,cv,2,validation,object_id,False,int64,int64,37,180.0,0,0,0,0,,,184,110,37,"[""c:167"", ""c:51745"", ""c:43458"", ""c:1637"", ""c:15652""]"
+Startup Success Prediction,5,0.2,cv,3,train,state_code,False,int64,int64,34,3.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,zip_code,False,int64,int64,109,33.0,0,0,0,0,,,120,87,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,id,False,int64,int64,110,72.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,city,False,int64,int64,85,18.0,0,0,0,0,,,73,55,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,Unnamed: 6,False,int64,int64,102,24.0,55,0,0,0,,,75,51,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,name,False,int64,int64,109,74.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,founded_at,False,int64,int64,110,19.0,0,0,0,0,,,80,59,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,closed_at,False,int64,int64,102,20.0,70,0,0,0,,,55,35,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,first_funding_at,False,int64,int64,109,53.0,0,0,0,0,,,159,104,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,last_funding_at,False,int64,int64,106,63.0,0,0,0,0,,,169,105,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,age_first_milestone_year,False,float64,float64,21,0.2012576025098496,21,0,0,0,2.827698051948052,2.6264404494382023,,,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,age_last_milestone_year,False,float64,float64,21,0.26175938275207944,21,0,0,0,4.769127922077922,4.507368539325842,,,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,state_code.1,False,int64,int64,34,3.0,0,0,0,0,,,24,21,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,category_code,False,int64,int64,63,5.0,0,0,0,0,,,27,22,0,[]
+Startup Success Prediction,5,0.2,cv,3,train,object_id,False,int64,int64,110,72.0,0,0,0,0,,,184,110,0,[]
+Startup Success Prediction,5,0.2,cv,3,validation,state_code,False,int64,int64,6,21.0,0,0,0,0,,,24,21,3,"[""RI"", ""NV"", ""UT""]"
+Startup Success Prediction,5,0.2,cv,3,validation,zip_code,False,int64,int64,37,108.0,0,0,0,0,,,120,87,16,"[""95014"", ""2906"", ""2466"", ""89052"", ""94089""]"
+Startup Success Prediction,5,0.2,cv,3,validation,id,False,int64,int64,37,183.0,0,0,0,0,,,184,110,37,"[""c:16178"", ""c:3986"", ""c:30820"", ""c:11888"", ""c:522""]"
+Startup Success Prediction,5,0.2,cv,3,validation,city,False,int64,int64,34,69.0,0,0,0,0,,,73,55,9,"[""Cupertino"", ""Providence"", ""Newton"", ""Henderson"", ""Provo""]"
+Startup Success Prediction,5,0.2,cv,3,validation,Unnamed: 6,False,int64,int64,36,67.0,20,0,0,0,,,75,51,12,"[""Providence RI 2906"", ""Henderson NV 89052"", ""Chicago IL 60606"", ""Santa Clara CA 95054"", ""Redwood City CA 94063""]"
+Startup Success Prediction,5,0.2,cv,3,validation,name,False,int64,int64,37,172.0,0,0,0,0,,,184,110,37,"[""ArcSight"", ""Krugle"", ""DiJiPOP"", ""Avaak"", ""Simple Star""]"
+Startup Success Prediction,5,0.2,cv,3,validation,founded_at,False,int64,int64,37,80.0,0,0,0,0,,,80,59,12,"[""11/1/2008"", ""12/6/2004"", ""2/8/2007"", ""9/24/2010"", ""1/1/1999""]"
+Startup Success Prediction,5,0.2,cv,3,validation,closed_at,False,int64,int64,34,48.0,22,0,0,0,,,55,35,11,"[""5/19/2011"", ""6/17/2010"", ""2/1/2011"", ""4/3/2012"", ""6/25/2008""]"
+Startup Success Prediction,5,0.2,cv,3,validation,first_funding_at,False,int64,int64,36,154.0,0,0,0,0,,,159,104,27,"[""5/31/2006"", ""8/1/2009"", ""10/3/2008"", ""8/1/2003"", ""9/1/2009""]"
+Startup Success Prediction,5,0.2,cv,3,validation,last_funding_at,False,int64,int64,36,164.0,0,0,0,0,,,169,105,34,"[""6/30/2006"", ""5/31/2006"", ""12/6/2010"", ""3/22/2010"", ""8/10/2005""]"
+Startup Success Prediction,5,0.2,cv,3,validation,age_first_milestone_year,False,float64,float64,2,0.2012576025098496,2,0,0,0,2.827698051948052,2.6264404494382023,,,0,[]
+Startup Success Prediction,5,0.2,cv,3,validation,age_last_milestone_year,False,float64,float64,2,0.26175938275207944,2,0,0,0,4.769127922077922,4.507368539325842,,,0,[]
+Startup Success Prediction,5,0.2,cv,3,validation,state_code.1,False,int64,int64,6,21.0,0,0,0,0,,,24,21,3,"[""RI"", ""NV"", ""UT""]"
+Startup Success Prediction,5,0.2,cv,3,validation,category_code,False,int64,int64,29,24.0,0,0,0,0,,,27,22,6,"[""search"", ""health"", ""social"", ""network_hosting""]"
+Startup Success Prediction,5,0.2,cv,3,validation,object_id,False,int64,int64,37,183.0,0,0,0,0,,,184,110,37,"[""c:16178"", ""c:3986"", ""c:30820"", ""c:11888"", ""c:522""]"
+Startup Success Prediction,5,0.2,cv,4,train,state_code,False,int64,int64,111,6.0,0,0,0,0,,,24,18,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,zip_code,False,int64,int64,111,42.0,0,0,0,0,,,120,78,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,id,False,int64,int64,110,72.0,0,0,0,0,,,184,111,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,city,False,int64,int64,104,18.0,0,0,0,0,,,73,51,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,Unnamed: 6,False,int64,int64,106,29.0,60,0,0,0,,,75,46,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,name,False,int64,int64,105,72.0,0,0,0,0,,,184,111,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,founded_at,False,int64,int64,111,20.0,0,0,0,0,,,80,60,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,closed_at,False,int64,int64,108,20.0,69,0,0,0,,,55,35,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,first_funding_at,False,int64,int64,108,56.0,0,0,0,0,,,159,101,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,last_funding_at,False,int64,int64,104,61.0,0,0,0,0,,,169,105,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,age_first_milestone_year,False,float64,float64,15,0.15669492694805198,15,0,0,0,2.827698051948052,2.671003125,,,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,age_last_milestone_year,False,float64,float64,15,0.19453417207792167,15,0,0,0,4.769127922077922,4.57459375,,,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,state_code.1,False,int64,int64,111,6.0,0,0,0,0,,,24,18,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,category_code,False,int64,int64,92,5.0,0,0,0,0,,,27,22,0,[]
+Startup Success Prediction,5,0.2,cv,4,train,object_id,False,int64,int64,110,72.0,0,0,0,0,,,184,111,0,[]
+Startup Success Prediction,5,0.2,cv,4,validation,state_code,False,int64,int64,36,17.0,0,0,0,0,,,24,18,6,"[""MI"", ""NC"", ""AR"", ""OR"", ""MO""]"
+Startup Success Prediction,5,0.2,cv,4,validation,zip_code,False,int64,int64,36,119.0,0,0,0,0,,,120,78,24,"[""92887"", ""1730"", ""49464"", ""27701"", ""72201""]"
+Startup Success Prediction,5,0.2,cv,4,validation,id,False,int64,int64,36,176.0,0,0,0,0,,,184,111,36,"[""c:79149"", ""c:60186"", ""c:56568"", ""c:26390"", ""c:38460""]"
+Startup Success Prediction,5,0.2,cv,4,validation,city,False,int64,int64,35,73.0,0,0,0,0,,,73,51,13,"[""Yorba Linda"", ""Bedford"", ""Zeeland"", ""Durham"", ""Little Rock""]"
+Startup Success Prediction,5,0.2,cv,4,validation,Unnamed: 6,False,int64,int64,35,74.0,15,0,0,0,,,75,46,17,"[""Yorba Linda CA 92887"", ""Bedford MA 1730"", ""Durham NC 27701"", ""Little Rock AR 72201"", ""New York NY 10005""]"
+Startup Success Prediction,5,0.2,cv,4,validation,name,False,int64,int64,36,184.0,0,0,0,0,,,184,111,36,"[""Gigi Hill"", ""Blue Buzz Network"", ""Sionex"", ""Revetto"", ""EvoApp""]"
+Startup Success Prediction,5,0.2,cv,4,validation,founded_at,False,int64,int64,36,57.0,0,0,0,0,,,80,60,11,"[""6/1/2007"", ""1/20/2006"", ""10/1/2007"", ""4/1/2005"", ""7/1/2000""]"
+Startup Success Prediction,5,0.2,cv,4,validation,closed_at,False,int64,int64,36,52.0,23,0,0,0,,,55,35,11,"[""7/16/2013"", ""8/6/2010"", ""5/18/2009"", ""1/1/2013"", ""11/3/2012""]"
+Startup Success Prediction,5,0.2,cv,4,validation,first_funding_at,False,int64,int64,36,141.0,0,0,0,0,,,159,101,30,"[""6/15/2011"", ""7/13/2010"", ""12/7/2005"", ""5/1/2009"", ""10/15/2010""]"
+Startup Success Prediction,5,0.2,cv,4,validation,last_funding_at,False,int64,int64,35,168.0,0,0,0,0,,,169,105,34,"[""8/8/2012"", ""7/13/2010"", ""12/7/2005"", ""5/1/2009"", ""4/20/2012""]"
+Startup Success Prediction,5,0.2,cv,4,validation,age_first_milestone_year,False,float64,float64,8,0.15669492694805198,8,0,0,0,2.827698051948052,2.671003125,,,0,[]
+Startup Success Prediction,5,0.2,cv,4,validation,age_last_milestone_year,False,float64,float64,8,0.19453417207792167,8,0,0,0,4.769127922077922,4.57459375,,,0,[]
+Startup Success Prediction,5,0.2,cv,4,validation,state_code.1,False,int64,int64,36,17.0,0,0,0,0,,,24,18,6,"[""MI"", ""NC"", ""AR"", ""OR"", ""MO""]"
+Startup Success Prediction,5,0.2,cv,4,validation,category_code,False,int64,int64,32,15.0,0,0,0,0,,,27,22,5,"[""manufacturing"", ""music"", ""consulting"", ""fashion""]"
+Startup Success Prediction,5,0.2,cv,4,validation,object_id,False,int64,int64,36,176.0,0,0,0,0,,,184,111,36,"[""c:79149"", ""c:60186"", ""c:56568"", ""c:26390"", ""c:38460""]"
+Startup Success Prediction,5,1.0,heldout,0,train,state_code,False,int64,int64,1,1.0,0,0,0,0,,,35,34,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,zip_code,False,int64,int64,711,40.0,0,0,0,0,,,382,342,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,id,False,int64,int64,732,184.0,0,0,0,0,,,922,738,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,city,False,int64,int64,726,19.0,0,0,0,0,,,221,200,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,Unnamed: 6,False,int64,int64,738,30.0,397,0,0,0,,,253,223,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,name,False,int64,int64,738,184.0,0,0,0,0,,,922,738,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,founded_at,False,int64,int64,736,32.0,0,0,0,0,,,217,185,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,closed_at,False,int64,int64,695,32.0,469,0,0,0,,,203,171,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,first_funding_at,False,int64,int64,670,101.0,0,0,0,0,,,585,484,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,last_funding_at,False,int64,int64,737,114.0,0,0,0,0,,,680,566,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,age_first_milestone_year,False,float64,float64,126,0.007845481422140477,126,0,0,0,3.055353047989624,3.0631985294117645,,,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,age_last_milestone_year,False,float64,float64,126,0.014899163932758697,126,0,0,0,4.754422568093385,4.769321732026143,,,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,state_code.1,False,int64,int64,2,1.0,1,0,0,0,,,36,35,0,[]
+Startup Success Prediction,5,1.0,heldout,0,train,object_id,False,int64,int64,732,184.0,0,0,0,0,,,922,738,0,[]
+Startup Success Prediction,5,1.0,heldout,0,test,state_code,False,int64,int64,1,34.0,0,0,0,0,,,35,34,1,"[""WI""]"
+Startup Success Prediction,5,1.0,heldout,0,test,zip_code,False,int64,int64,178,367.0,0,0,0,0,,,382,342,43,"[""30043"", ""11101"", ""94901"", ""2129"", ""18015""]"
+Startup Success Prediction,5,1.0,heldout,0,test,id,False,int64,int64,185,914.0,0,0,0,0,,,922,738,184,"[""c:55592"", ""c:1283"", ""c:29312"", ""c:16618"", ""c:155821""]"
+Startup Success Prediction,5,1.0,heldout,0,test,city,False,int64,int64,183,221.0,0,0,0,0,,,221,200,22,"[""Lawrenceville"", ""Long Island City"", ""Bethlehem"", ""Altamonte Springs"", ""West Chester""]"
+Startup Success Prediction,5,1.0,heldout,0,test,Unnamed: 6,False,int64,int64,185,252.0,96,0,0,0,,,253,223,33,"[""Lawrenceville GA 30043"", ""NY NY 10011"", ""West Chester PA 19380"", ""Portland OR 97214"", ""Portland OR 97201""]"
+Startup Success Prediction,5,1.0,heldout,0,test,name,False,int64,int64,185,921.0,0,0,0,0,,,922,738,184,"[""Wander (f. YongoPal)"", ""MerchantCircle"", ""Trust Digital"", ""Vocalocity"", ""Nalace Corporation""]"
+Startup Success Prediction,5,1.0,heldout,0,test,founded_at,False,int64,int64,185,216.0,0,0,0,0,,,217,185,32,"[""3/1/2003"", ""11/1/2003"", ""10/17/2008"", ""5/9/2005"", ""2/2/2006""]"
+Startup Success Prediction,5,1.0,heldout,0,test,closed_at,False,int64,int64,177,189.0,119,0,0,0,,,203,171,32,"[""12/25/2011"", ""5/17/2012"", ""1/10/2013"", ""11/10/2010"", ""6/30/2010""]"
+Startup Success Prediction,5,1.0,heldout,0,test,first_funding_at,False,int64,int64,168,582.0,0,0,0,0,,,585,484,104,"[""4/1/2010"", ""6/5/2006"", ""11/4/2005"", ""4/19/2012"", ""1/28/2006""]"
+Startup Success Prediction,5,1.0,heldout,0,test,last_funding_at,False,int64,int64,185,673.0,0,0,0,0,,,680,566,116,"[""7/29/2009"", ""8/29/2011"", ""4/19/2012"", ""8/1/2009"", ""9/10/2013""]"
+Startup Success Prediction,5,1.0,heldout,0,test,age_first_milestone_year,False,float64,float64,26,0.007845481422140477,26,0,0,0,3.055353047989624,3.0631985294117645,,,0,[]
+Startup Success Prediction,5,1.0,heldout,0,test,age_last_milestone_year,False,float64,float64,26,0.014899163932758697,26,0,0,0,4.754422568093385,4.769321732026143,,,0,[]
+Startup Success Prediction,5,1.0,heldout,0,test,state_code.1,False,int64,int64,1,34.0,0,0,0,0,,,36,35,1,"[""WI""]"
+Startup Success Prediction,5,1.0,heldout,0,test,object_id,False,int64,int64,185,914.0,0,0,0,0,,,922,738,184,"[""c:55592"", ""c:1283"", ""c:29312"", ""c:16618"", ""c:155821""]"
+Startup Success Prediction,5,1.0,cv,1,train,state_code,False,int64,int64,62,3.0,0,0,0,0,,,35,32,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,zip_code,False,int64,int64,531,106.0,0,0,0,0,,,382,276,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,id,False,int64,int64,551,368.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,city,False,int64,int64,544,58.0,0,0,0,0,,,221,161,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,Unnamed: 6,False,int64,int64,553,70.0,290,0,0,0,,,253,183,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,name,False,int64,int64,553,369.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,founded_at,False,int64,int64,551,65.0,0,0,0,0,,,217,152,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,closed_at,False,int64,int64,517,72.0,352,0,0,0,,,203,131,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,first_funding_at,False,int64,int64,508,198.0,0,0,0,0,,,585,386,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,last_funding_at,False,int64,int64,553,220.0,0,0,0,0,,,680,460,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,age_first_milestone_year,False,float64,float64,89,0.014377124424169274,89,0,0,0,3.055353047989624,3.0697301724137933,,,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,age_last_milestone_year,False,float64,float64,89,0.007426231886488388,89,0,0,0,4.754422568093385,4.746996336206896,,,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,state_code.1,False,int64,int64,63,3.0,1,0,0,0,,,36,33,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,category_code,False,int64,int64,348,1.0,0,0,0,0,,,35,34,0,[]
+Startup Success Prediction,5,1.0,cv,1,train,object_id,False,int64,int64,551,368.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,1,validation,state_code,False,int64,int64,25,31.0,0,0,0,0,,,35,32,6,"[""UT"", ""RI""]"
+Startup Success Prediction,5,1.0,cv,1,validation,zip_code,False,int64,int64,180,381.0,0,0,0,0,,,382,276,68,"[""92612"", ""10018"", ""10119"", ""97224"", ""95008-2069""]"
+Startup Success Prediction,5,1.0,cv,1,validation,id,False,int64,int64,185,922.0,0,0,0,0,,,922,553,185,"[""c:51021"", ""c:58699"", ""c:36936"", ""c:74341"", ""c:142""]"
+Startup Success Prediction,5,1.0,cv,1,validation,city,False,int64,int64,182,218.0,0,0,0,0,,,221,161,42,"[""College Park"", ""Lindon"", ""West Newfield"", ""Minneapolis"", ""Providence""]"
+Startup Success Prediction,5,1.0,cv,1,validation,Unnamed: 6,False,int64,int64,185,250.0,107,0,0,0,,,253,183,42,"[""Irvine CA 92612"", ""New York City NY 10018"", ""New York NY 10119"", ""Portland OR 97224"", ""Brisbane CA 94005""]"
+Startup Success Prediction,5,1.0,cv,1,validation,name,False,int64,int64,185,918.0,0,0,0,0,,,922,553,185,"[""PayDivvy"", ""Hashable"", ""Genesis Networks"", ""Max-Viz"", ""Bebo""]"
+Startup Success Prediction,5,1.0,cv,1,validation,founded_at,False,int64,int64,185,199.0,0,0,0,0,,,217,152,36,"[""3/6/2009"", ""1/6/2005"", ""1/25/2010"", ""8/18/2004"", ""7/8/2008""]"
+Startup Success Prediction,5,1.0,cv,1,validation,closed_at,False,int64,int64,178,202.0,117,0,0,0,,,203,131,43,"[""7/25/2012"", ""2/12/2012"", ""9/28/2011"", ""12/7/2012"", ""3/1/2013""]"
+Startup Success Prediction,5,1.0,cv,1,validation,first_funding_at,False,int64,int64,162,585.0,0,0,0,0,,,585,386,101,"[""1/15/2009"", ""11/22/2010"", ""9/26/2006"", ""4/18/2005"", ""7/15/2008""]"
+Startup Success Prediction,5,1.0,cv,1,validation,last_funding_at,False,int64,int64,185,679.0,0,0,0,0,,,680,460,110,"[""4/27/2012"", ""11/22/2010"", ""5/6/2010"", ""7/18/2011"", ""10/31/2007""]"
+Startup Success Prediction,5,1.0,cv,1,validation,age_first_milestone_year,False,float64,float64,37,0.014377124424169274,37,0,0,0,3.055353047989624,3.0697301724137933,,,0,[]
+Startup Success Prediction,5,1.0,cv,1,validation,age_last_milestone_year,False,float64,float64,37,0.007426231886488388,37,0,0,0,4.754422568093385,4.746996336206896,,,0,[]
+Startup Success Prediction,5,1.0,cv,1,validation,state_code.1,False,int64,int64,25,31.0,0,0,0,0,,,36,33,6,"[""UT"", ""RI""]"
+Startup Success Prediction,5,1.0,cv,1,validation,category_code,False,int64,int64,117,16.0,0,0,0,0,,,35,34,1,"[""manufacturing""]"
+Startup Success Prediction,5,1.0,cv,1,validation,object_id,False,int64,int64,185,922.0,0,0,0,0,,,922,553,185,"[""c:51021"", ""c:58699"", ""c:36936"", ""c:74341"", ""c:142""]"
+Startup Success Prediction,5,1.0,cv,2,train,state_code,False,int64,int64,553,3.0,0,0,0,0,,,35,30,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,zip_code,False,int64,int64,551,104.0,0,0,0,0,,,382,278,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,id,False,int64,int64,553,369.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,city,False,int64,int64,544,59.0,0,0,0,0,,,221,160,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,Unnamed: 6,False,int64,int64,553,76.0,298,0,0,0,,,253,177,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,name,False,int64,int64,553,369.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,founded_at,False,int64,int64,553,58.0,0,0,0,0,,,217,159,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,closed_at,False,int64,int64,524,66.0,351,0,0,0,,,203,137,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,first_funding_at,False,int64,int64,497,191.0,0,0,0,0,,,585,394,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,last_funding_at,False,int64,int64,552,232.0,0,0,0,0,,,680,447,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,age_first_milestone_year,False,float64,float64,101,0.07975880020201354,101,0,0,0,3.055353047989624,2.9755942477876105,,,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,age_last_milestone_year,False,float64,float64,101,0.07182787782789823,101,0,0,0,4.754422568093385,4.6825946902654865,,,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,state_code.1,False,int64,int64,553,5.0,1,0,0,0,,,36,31,0,[]
+Startup Success Prediction,5,1.0,cv,2,train,object_id,False,int64,int64,553,369.0,0,0,0,0,,,922,553,0,[]
+Startup Success Prediction,5,1.0,cv,2,validation,state_code,False,int64,int64,185,35.0,0,0,0,0,,,35,30,4,"[""ID"", ""AR"", ""NV"", ""WV""]"
+Startup Success Prediction,5,1.0,cv,2,validation,zip_code,False,int64,int64,185,380.0,0,0,0,0,,,382,278,65,"[""6002"", ""17603"", ""14217"", ""02111-1720"", ""91101""]"
+Startup Success Prediction,5,1.0,cv,2,validation,id,False,int64,int64,185,920.0,0,0,0,0,,,922,553,185,"[""c:81886"", ""c:19101"", ""c:53814"", ""c:1967"", ""c:50208""]"
+Startup Success Prediction,5,1.0,cv,2,validation,city,False,int64,int64,183,216.0,0,0,0,0,,,221,160,42,"[""Bloomfield"", ""Lancaster"", ""Kenmore"", ""Richardson"", ""Wilmington""]"
+Startup Success Prediction,5,1.0,cv,2,validation,Unnamed: 6,False,int64,int64,185,248.0,99,0,0,0,,,253,177,46,"[""Redwood City CA 94065"", ""Pleasanton CA 94566"", ""Kenmore NY 14217"", ""Boston MA 02111-1720"", ""Richardson TX 75082""]"
+Startup Success Prediction,5,1.0,cv,2,validation,name,False,int64,int64,185,917.0,0,0,0,0,,,922,553,185,"[""skyrockit"", ""Pocket Communications Northeast"", ""PacketHop"", ""BreakingPoint Systems"", ""QuantaLife""]"
+Startup Success Prediction,5,1.0,cv,2,validation,founded_at,False,int64,int64,185,208.0,0,0,0,0,,,217,159,29,"[""8/28/2005"", ""12/1/2008"", ""4/17/2009"", ""1/20/2006"", ""9/1/2008""]"
+Startup Success Prediction,5,1.0,cv,2,validation,closed_at,False,int64,int64,171,201.0,118,0,0,0,,,203,137,37,"[""1/4/2013"", ""12/2/2008"", ""11/11/2011"", ""11/9/2011"", ""3/6/2012""]"
+Startup Success Prediction,5,1.0,cv,2,validation,first_funding_at,False,int64,int64,173,584.0,0,0,0,0,,,585,394,96,"[""11/12/2007"", ""12/13/2010"", ""6/1/2006"", ""4/17/2011"", ""12/21/2005""]"
+Startup Success Prediction,5,1.0,cv,2,validation,last_funding_at,False,int64,int64,185,680.0,0,0,0,0,,,680,447,127,"[""7/12/2011"", ""2/20/2009"", ""8/8/2005"", ""4/22/2010"", ""7/22/2011""]"
+Startup Success Prediction,5,1.0,cv,2,validation,age_first_milestone_year,False,float64,float64,25,0.07975880020201354,25,0,0,0,3.055353047989624,2.9755942477876105,,,0,[]
+Startup Success Prediction,5,1.0,cv,2,validation,age_last_milestone_year,False,float64,float64,25,0.07182787782789823,25,0,0,0,4.754422568093385,4.6825946902654865,,,0,[]
+Startup Success Prediction,5,1.0,cv,2,validation,state_code.1,False,int64,int64,185,35.0,0,0,0,0,,,36,31,4,"[""ID"", ""AR"", ""NV"", ""WV""]"
+Startup Success Prediction,5,1.0,cv,2,validation,object_id,False,int64,int64,185,920.0,0,0,0,0,,,922,553,185,"[""c:81886"", ""c:19101"", ""c:53814"", ""c:1967"", ""c:50208""]"
+Startup Success Prediction,5,1.0,cv,3,train,state_code,False,int64,int64,553,4.0,0,0,0,0,,,35,31,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,zip_code,False,int64,int64,554,105.0,0,0,0,0,,,382,277,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,id,False,int64,int64,553,368.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,city,False,int64,int64,548,51.0,0,0,0,0,,,221,167,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,Unnamed: 6,False,int64,int64,554,74.0,305,0,0,0,,,253,179,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,name,False,int64,int64,554,368.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,founded_at,False,int64,int64,552,56.0,0,0,0,0,,,217,158,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,closed_at,False,int64,int64,554,68.0,352,0,0,0,,,203,135,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,first_funding_at,False,int64,int64,504,211.0,0,0,0,0,,,585,374,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,last_funding_at,False,int64,int64,553,241.0,0,0,0,0,,,680,439,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,age_first_milestone_year,False,float64,float64,89,0.11435964018241895,89,0,0,0,3.055353047989624,3.169712688172043,,,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,age_last_milestone_year,False,float64,float64,89,0.13372130287435713,89,0,0,0,4.754422568093385,4.888143870967742,,,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,state_code.1,False,int64,int64,553,4.0,1,0,0,0,,,36,32,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,category_code,False,int64,int64,502,2.0,0,0,0,0,,,35,33,0,[]
+Startup Success Prediction,5,1.0,cv,3,train,object_id,False,int64,int64,553,368.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,3,validation,state_code,False,int64,int64,184,22.0,0,0,0,0,,,35,31,5,"[""MO"", ""AZ"", ""NM""]"
+Startup Success Prediction,5,1.0,cv,3,validation,zip_code,False,int64,int64,184,375.0,0,0,0,0,,,382,277,67,"[""30350"", ""64106"", ""91754"", ""94608"", ""94903""]"
+Startup Success Prediction,5,1.0,cv,3,validation,id,False,int64,int64,184,921.0,0,0,0,0,,,922,554,184,"[""c:1214"", ""c:58944"", ""c:31832"", ""c:24274"", ""c:5932""]"
+Startup Success Prediction,5,1.0,cv,3,validation,city,False,int64,int64,183,219.0,0,0,0,0,,,221,167,38,"[""Kansas City"", ""Monterey Park"", ""Emeryville"", ""San Rafael"", ""Minnetonka""]"
+Startup Success Prediction,5,1.0,cv,3,validation,Unnamed: 6,False,int64,int64,184,251.0,92,0,0,0,,,253,179,46,"[""San Rafael CA 94903"", ""Minnetonka MN 55343"", ""Nashville TN 37201"", ""New York City NY 10010"", ""Petaluma CA 94954""]"
+Startup Success Prediction,5,1.0,cv,3,validation,name,False,int64,int64,184,919.0,0,0,0,0,,,922,554,184,"[""Quigo"", ""MoPub"", ""Avidia"", ""Prenova"", ""Handmark""]"
+Startup Success Prediction,5,1.0,cv,3,validation,founded_at,False,int64,int64,184,217.0,0,0,0,0,,,217,158,32,"[""9/9/2010"", ""6/1/2011"", ""8/1/2005"", ""1/8/2008"", ""9/19/2006""]"
+Startup Success Prediction,5,1.0,cv,3,validation,closed_at,False,int64,int64,184,196.0,117,0,0,0,,,203,135,36,"[""8/8/2013"", ""1/1/2008"", ""4/16/2010"", ""9/15/2010"", ""1/1/2007""]"
+Startup Success Prediction,5,1.0,cv,3,validation,first_funding_at,False,int64,int64,166,581.0,0,0,0,0,,,585,374,114,"[""9/1/2010"", ""5/6/2005"", ""5/10/2006"", ""9/12/2005"", ""7/28/2011""]"
+Startup Success Prediction,5,1.0,cv,3,validation,last_funding_at,False,int64,int64,184,676.0,0,0,0,0,,,680,439,132,"[""9/20/2012"", ""4/24/2008"", ""9/7/2006"", ""1/26/2012"", ""11/5/2009""]"
+Startup Success Prediction,5,1.0,cv,3,validation,age_first_milestone_year,False,float64,float64,37,0.11435964018241895,37,0,0,0,3.055353047989624,3.169712688172043,,,0,[]
+Startup Success Prediction,5,1.0,cv,3,validation,age_last_milestone_year,False,float64,float64,37,0.13372130287435713,37,0,0,0,4.754422568093385,4.888143870967742,,,0,[]
+Startup Success Prediction,5,1.0,cv,3,validation,state_code.1,False,int64,int64,184,22.0,0,0,0,0,,,36,32,5,"[""MO"", ""AZ"", ""NM""]"
+Startup Success Prediction,5,1.0,cv,3,validation,category_code,False,int64,int64,167,15.0,0,0,0,0,,,35,33,2,"[""automotive"", ""hospitality""]"
+Startup Success Prediction,5,1.0,cv,3,validation,object_id,False,int64,int64,184,921.0,0,0,0,0,,,922,554,184,"[""c:1214"", ""c:58944"", ""c:31832"", ""c:24274"", ""c:5932""]"
+Startup Success Prediction,5,1.0,cv,4,train,state_code,False,int64,int64,1,1.0,0,0,0,0,,,35,34,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,zip_code,False,int64,int64,553,98.0,0,0,0,0,,,382,283,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,id,False,int64,int64,550,368.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,city,False,int64,int64,554,46.0,0,0,0,0,,,221,173,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,Unnamed: 6,False,int64,int64,554,76.0,298,0,0,0,,,253,177,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,name,False,int64,int64,554,365.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,founded_at,False,int64,int64,552,66.0,0,0,0,0,,,217,151,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,closed_at,False,int64,int64,520,69.0,352,0,0,0,,,203,134,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,first_funding_at,False,int64,int64,501,195.0,0,0,0,0,,,585,390,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,last_funding_at,False,int64,int64,553,230.0,0,0,0,0,,,680,450,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,age_first_milestone_year,False,float64,float64,99,0.020643817220393323,99,0,0,0,3.055353047989624,3.0347092307692307,,,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,age_last_milestone_year,False,float64,float64,99,0.002387761576945202,99,0,0,0,4.754422568093385,4.75681032967033,,,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,state_code.1,False,int64,int64,1,1.0,0,0,0,0,,,36,34,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,category_code,False,int64,int64,88,2.0,0,0,0,0,,,35,33,0,[]
+Startup Success Prediction,5,1.0,cv,4,train,object_id,False,int64,int64,550,368.0,0,0,0,0,,,922,554,0,[]
+Startup Success Prediction,5,1.0,cv,4,validation,zip_code,False,int64,int64,184,382.0,0,0,0,0,,,382,283,61,"[""94002"", ""8827"", ""30309"", ""11217"", ""98052""]"
+Startup Success Prediction,5,1.0,cv,4,validation,id,False,int64,int64,184,918.0,0,0,0,0,,,922,554,184,"[""c:615"", ""c:531"", ""c:25510"", ""c:668"", ""c:14787""]"
+Startup Success Prediction,5,1.0,cv,4,validation,city,False,int64,int64,184,214.0,0,0,0,0,,,221,173,30,"[""Belmont"", ""Hampton"", ""NW Atlanta"", ""Redmond"", ""Acton""]"
+Startup Success Prediction,5,1.0,cv,4,validation,Unnamed: 6,False,int64,int64,184,246.0,99,0,0,0,,,253,177,46,"[""Hampton NJ 8827"", ""Brooklyn NY 11217"", ""Palo Alto CA 95128"", ""San Francisco CA 94607"", ""Alameda CA 94501""]"
+Startup Success Prediction,5,1.0,cv,4,validation,name,False,int64,int64,184,922.0,0,0,0,0,,,922,554,184,"[""LocaModa"", ""sezmi"", ""Enpirion"", ""SnapTell"", ""Transpond""]"
+Startup Success Prediction,5,1.0,cv,4,validation,founded_at,False,int64,int64,184,214.0,0,0,0,0,,,217,151,36,"[""10/31/2000"", ""8/28/2000"", ""2/1/2011"", ""4/1/2004"", ""5/24/2010""]"
+Startup Success Prediction,5,1.0,cv,4,validation,closed_at,False,int64,int64,175,199.0,117,0,0,0,,,203,134,38,"[""3/4/2010"", ""5/29/2012"", ""3/13/2013"", ""4/26/2012"", ""12/6/2012""]"
+Startup Success Prediction,5,1.0,cv,4,validation,first_funding_at,False,int64,int64,169,559.0,0,0,0,0,,,585,390,99,"[""12/21/2004"", ""6/7/2007"", ""2/4/2009"", ""12/20/2002"", ""8/23/2011""]"
+Startup Success Prediction,5,1.0,cv,4,validation,last_funding_at,False,int64,int64,184,678.0,0,0,0,0,,,680,450,125,"[""3/25/2011"", ""3/31/2011"", ""2/4/2009"", ""12/15/2010"", ""8/23/2011""]"
+Startup Success Prediction,5,1.0,cv,4,validation,age_first_milestone_year,False,float64,float64,27,0.020643817220393323,27,0,0,0,3.055353047989624,3.0347092307692307,,,0,[]
+Startup Success Prediction,5,1.0,cv,4,validation,age_last_milestone_year,False,float64,float64,27,0.002387761576945202,27,0,0,0,4.754422568093385,4.75681032967033,,,0,[]
+Startup Success Prediction,5,1.0,cv,4,validation,state_code.1,False,int64,int64,1,36.0,1,0,0,0,,,36,34,1,"[""nan""]"
+Startup Success Prediction,5,1.0,cv,4,validation,category_code,False,int64,int64,35,33.0,0,0,0,0,,,35,33,3,"[""transportation"", ""sports""]"
+Startup Success Prediction,5,1.0,cv,4,validation,object_id,False,int64,int64,184,918.0,0,0,0,0,,,922,554,184,"[""c:615"", ""c:531"", ""c:25510"", ""c:668"", ""c:14787""]"

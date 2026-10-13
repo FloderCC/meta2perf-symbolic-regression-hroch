@@ -9,14 +9,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
-RESULTS = SRC / "results"
+OUTPUTS = SRC / "outputs"
+METADATASET_ARCHIVE = OUTPUTS / "metadataset" / "archived"
 
 EXPECTED_CSVS = {
-    "base_classifier_hyperparameters.csv": (25_836, 5),
-    "base_classifier_performance.csv": (25_836, 13),
-    "dataset_metafeatures.csv": (1_615, 57),
-    "meta_dataset.csv": (25_836, 24),
-    "joint_random_forest_shap.csv": (19, 2),
+    "metadataset/archived/base_classifier_hyperparameters.csv": (25_836, 5),
+    "metadataset/archived/base_classifier_performance.csv": (25_836, 13),
+    "metadataset/archived/dataset_metafeatures.csv": (1_615, 57),
+    "metadataset/archived/meta_dataset.csv": (25_836, 24),
+    "random_forest_shap/archived/joint_random_forest_shap.csv": (19, 2),
 }
 
 
@@ -38,12 +39,12 @@ def csv_dimensions(path: Path) -> tuple[int, int]:
 
 def validate_archived_results() -> None:
     for filename, expected_dimensions in EXPECTED_CSVS.items():
-        actual_dimensions = csv_dimensions(RESULTS / filename)
+        actual_dimensions = csv_dimensions(OUTPUTS / filename)
         assert actual_dimensions == expected_dimensions, (
             f"{filename}: expected {expected_dimensions}, got {actual_dimensions}"
         )
 
-    with (RESULTS / "meta_dataset.csv").open(
+    with (METADATASET_ARCHIVE / "meta_dataset.csv").open(
         encoding="utf-8-sig", newline=""
     ) as handle:
         rows = csv.DictReader(handle)
@@ -62,11 +63,11 @@ def validate_dataset_documentation() -> None:
 
 def validate_withdrawn_analysis_is_absent() -> None:
     source_text = "\n".join(
-        path.read_text(encoding="utf-8") for path in SRC.glob("*.py")
+        path.read_text(encoding="utf-8") for path in SRC.rglob("*.py")
     )
     assert "MinMaxScaler" not in source_text
-    assert not list(SRC.glob("*_f_s.py"))
-    assert not list((SRC / "logs").glob("*_f_s.txt"))
+    assert not list(SRC.rglob("*_f_s.py"))
+    assert not list(OUTPUTS.rglob("*_f_s.txt"))
 
 
 def main() -> None:

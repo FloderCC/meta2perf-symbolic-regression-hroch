@@ -1,0 +1,81 @@
+﻿dataset,seed,fraction,stage,fold,partition,rows,status,x_exact,y_exact,changed_cells,changed_rows,changed_feature_cells,changed_target_cells,dtype_changes,unknown_cells,old_nonfinite_cells,new_nonfinite_cells,max_abs_delta
+Iris,5,0.2,heldout,0,train,24,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,heldout,0,test,6,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,1,train,18,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,1,validation,6,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,2,train,18,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,2,validation,6,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,3,train,18,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,3,validation,6,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,4,train,18,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,0.2,cv,4,validation,6,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,heldout,0,train,120,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,heldout,0,test,30,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,1,train,90,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,1,validation,30,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,2,train,90,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,2,validation,30,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,3,train,90,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,3,validation,30,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,4,train,90,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Iris,5,1.0,cv,4,validation,30,EQUIVALENT,True,True,0,0,0,0,0,0,0,0,0.0
+Water Quality and Potability,5,0.2,heldout,0,train,524,CHANGED,False,True,218,193,218,0,0,0,0,0,0.9982834289683069
+Water Quality and Potability,5,0.2,heldout,0,test,132,CHANGED,False,True,51,47,51,0,0,0,0,0,0.9982834289683069
+Water Quality and Potability,5,0.2,cv,1,train,393,CHANGED,False,True,162,144,162,0,0,0,0,0,1.337959363903792
+Water Quality and Potability,5,0.2,cv,1,validation,131,CHANGED,False,True,56,49,56,0,0,0,0,0,1.337959363903792
+Water Quality and Potability,5,0.2,cv,2,train,393,CHANGED,False,True,159,142,159,0,0,0,0,0,0.9725658098495273
+Water Quality and Potability,5,0.2,cv,2,validation,131,CHANGED,False,True,59,51,59,0,0,0,0,0,0.9725658098495273
+Water Quality and Potability,5,0.2,cv,3,train,393,CHANGED,False,True,167,148,167,0,0,0,0,0,1.9848333107171925
+Water Quality and Potability,5,0.2,cv,3,validation,131,CHANGED,False,True,51,45,51,0,0,0,0,0,1.9848333107171925
+Water Quality and Potability,5,0.2,cv,4,train,393,CHANGED,False,True,166,145,166,0,0,0,0,0,0.33418916084906414
+Water Quality and Potability,5,0.2,cv,4,validation,131,CHANGED,False,True,52,48,52,0,0,0,0,0,0.33418916084906414
+Water Quality and Potability,5,1.0,heldout,0,train,2620,CHANGED,False,True,1145,1013,1145,0,0,0,0,0,0.3148835258459144
+Water Quality and Potability,5,1.0,heldout,0,test,656,CHANGED,False,True,289,252,289,0,0,0,0,0,0.3148835258459144
+Water Quality and Potability,5,1.0,cv,1,train,1965,CHANGED,False,True,848,748,848,0,0,0,0,0,0.13610710819440897
+Water Quality and Potability,5,1.0,cv,1,validation,655,CHANGED,False,True,297,265,297,0,0,0,0,0,0.13610710819440897
+Water Quality and Potability,5,1.0,cv,2,train,1965,CHANGED,False,True,888,787,888,0,0,0,0,0,0.253603156305104
+Water Quality and Potability,5,1.0,cv,2,validation,655,CHANGED,False,True,257,226,257,0,0,0,0,0,0.253603156305104
+Water Quality and Potability,5,1.0,cv,3,train,1965,CHANGED,False,True,847,754,847,0,0,0,0,0,0.23273633559563223
+Water Quality and Potability,5,1.0,cv,3,validation,655,CHANGED,False,True,298,259,298,0,0,0,0,0,0.23273633559563223
+Water Quality and Potability,5,1.0,cv,4,train,1965,CHANGED,False,True,852,750,852,0,0,0,0,0,1.2912043250466922
+Water Quality and Potability,5,1.0,cv,4,validation,655,CHANGED,False,True,293,263,293,0,0,0,0,0,1.2912043250466922
+Car Insurance Data,5,0.2,heldout,0,train,1600,CHANGED,False,True,329,309,329,0,0,0,0,0,60.84230497971657
+Car Insurance Data,5,0.2,heldout,0,test,400,CHANGED,False,True,80,78,80,0,0,0,0,0,60.84230497971657
+Car Insurance Data,5,0.2,cv,1,train,1200,CHANGED,False,True,241,229,241,0,0,0,0,0,116.17059541074559
+Car Insurance Data,5,0.2,cv,1,validation,400,CHANGED,False,True,88,80,88,0,0,0,0,0,116.17059541074559
+Car Insurance Data,5,0.2,cv,2,train,1200,CHANGED,False,True,248,233,248,0,0,0,0,0,84.1718388313293
+Car Insurance Data,5,0.2,cv,2,validation,400,CHANGED,False,True,81,76,81,0,0,0,0,0,84.1718388313293
+Car Insurance Data,5,0.2,cv,3,train,1200,CHANGED,False,True,245,228,245,0,0,0,0,0,43.99652620737834
+Car Insurance Data,5,0.2,cv,3,validation,400,CHANGED,False,True,84,81,84,0,0,0,0,0,43.99652620737834
+Car Insurance Data,5,0.2,cv,4,train,1200,CHANGED,False,True,253,237,253,0,0,0,0,0,87.17014380755427
+Car Insurance Data,5,0.2,cv,4,validation,400,CHANGED,False,True,76,72,76,0,0,0,0,0,87.17014380755427
+Car Insurance Data,5,1.0,heldout,0,train,8000,CHANGED,False,True,1548,1478,1548,0,0,0,0,0,23.859505667034682
+Car Insurance Data,5,1.0,heldout,0,test,2000,CHANGED,False,True,391,373,391,0,0,0,0,0,23.859505667034682
+Car Insurance Data,5,1.0,cv,1,train,6000,CHANGED,False,True,1176,1124,1176,0,0,0,0,0,38.10101741249309
+Car Insurance Data,5,1.0,cv,1,validation,2000,CHANGED,False,True,372,354,372,0,0,0,0,0,38.10101741249309
+Car Insurance Data,5,1.0,cv,2,train,6000,CHANGED,False,True,1158,1106,1158,0,0,0,0,0,20.2636444385098
+Car Insurance Data,5,1.0,cv,2,validation,2000,CHANGED,False,True,390,372,390,0,0,0,0,0,20.2636444385098
+Car Insurance Data,5,1.0,cv,3,train,6000,CHANGED,False,True,1152,1096,1152,0,0,0,0,0,22.827551009862873
+Car Insurance Data,5,1.0,cv,3,validation,2000,CHANGED,False,True,396,382,396,0,0,0,0,0,22.827551009862873
+Car Insurance Data,5,1.0,cv,4,train,6000,CHANGED,False,True,1158,1108,1158,0,0,0,0,0,14.255315303431416
+Car Insurance Data,5,1.0,cv,4,validation,2000,CHANGED,False,True,390,370,390,0,0,0,0,0,14.255315303431416
+Startup Success Prediction,5,0.2,heldout,0,train,147,CHANGED,False,True,1453,147,1453,0,0,0,0,0,37.0
+Startup Success Prediction,5,0.2,heldout,0,test,37,UNKNOWN_CATEGORY,False,True,380,37,380,0,0,231,0,0,184.0
+Startup Success Prediction,5,0.2,cv,1,train,110,CHANGED,False,True,1231,110,1231,0,0,0,0,0,74.0
+Startup Success Prediction,5,0.2,cv,1,validation,37,UNKNOWN_CATEGORY,False,True,435,37,435,0,0,250,0,0,182.0
+Startup Success Prediction,5,0.2,cv,2,train,110,CHANGED,False,True,1202,110,1202,0,0,0,0,0,74.0
+Startup Success Prediction,5,0.2,cv,2,validation,37,UNKNOWN_CATEGORY,False,True,418,37,418,0,0,252,0,0,183.0
+Startup Success Prediction,5,0.2,cv,3,train,110,CHANGED,False,True,1225,110,1225,0,0,0,0,0,74.0
+Startup Success Prediction,5,0.2,cv,3,validation,37,UNKNOWN_CATEGORY,False,True,406,37,406,0,0,244,0,0,183.0
+Startup Success Prediction,5,0.2,cv,4,train,111,CHANGED,False,True,1421,111,1421,0,0,0,0,0,72.0
+Startup Success Prediction,5,0.2,cv,4,validation,36,UNKNOWN_CATEGORY,False,True,477,36,477,0,0,265,0,0,184.0
+Startup Success Prediction,5,1.0,heldout,0,train,738,CHANGED,False,True,7470,738,7470,0,0,0,0,0,184.0
+Startup Success Prediction,5,1.0,heldout,0,test,185,UNKNOWN_CATEGORY,False,True,1870,185,1870,0,0,936,0,0,921.0
+Startup Success Prediction,5,1.0,cv,1,train,553,CHANGED,False,True,6063,553,6063,0,0,0,0,0,369.0
+Startup Success Prediction,5,1.0,cv,1,validation,185,UNKNOWN_CATEGORY,False,True,2053,185,2053,0,0,1010,0,0,922.0
+Startup Success Prediction,5,1.0,cv,2,train,553,CHANGED,False,True,6741,553,6741,0,0,0,0,0,369.0
+Startup Success Prediction,5,1.0,cv,2,validation,185,UNKNOWN_CATEGORY,False,True,2242,185,2242,0,0,1005,0,0,920.0
+Startup Success Prediction,5,1.0,cv,3,train,554,CHANGED,False,True,7265,554,7265,0,0,0,0,0,368.0
+Startup Success Prediction,5,1.0,cv,3,validation,184,UNKNOWN_CATEGORY,False,True,2430,184,2430,0,0,1029,0,0,921.0
+Startup Success Prediction,5,1.0,cv,4,train,554,CHANGED,False,True,5729,554,5729,0,0,0,0,0,368.0
+Startup Success Prediction,5,1.0,cv,4,validation,184,UNKNOWN_CATEGORY,False,True,1906,184,1906,0,0,991,0,0,922.0

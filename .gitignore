@@ -18,4 +18,9 @@ Thumbs.db
 src/datasets/*/*.csv
 
 # Partial outputs created by the parallel tuning stage.
-src/results/base_classifier_hyperparameters_seed_*.csv
+src/outputs/metadataset/*/base_classifier_hyperparameters_seed_*.csv
+
+# Reusable generated GP populations.
+src/cache/
+tmp
+reviewer_response.txt
