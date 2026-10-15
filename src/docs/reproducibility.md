@@ -8,6 +8,14 @@ symbolic-regression log, the dataset-only reference-regressor log, the joint
 random-forest/KernelSHAP log, the SHAP relevance values, and the manuscript
 figures.
 
+The completed final evaluation is in
+[`../outputs/model_evaluation/final/`](../outputs/model_evaluation/final/),
+including final equation coefficients, row-wise
+and LODO metrics, predictions, correlations and TreeSHAP values. Earlier
+experiment outputs retain their original contents in the archive directories.
+The prepared input is the shared
+[meta-dataset](../outputs/metadataset/archived/meta_dataset.csv).
+
 Raw source datasets are not redistributed because they originate from multiple
 third-party providers. Source links are retained in the per-dataset README
 files.
@@ -98,16 +106,74 @@ so compatible screening checkpoints remain resumable in refinement. Budget,
 logging and resume controls are excluded from that fingerprint. Legacy caches
 and checkpoints are preserved but not reused without compatibility metadata.
 Legacy screening summaries remain usable to select historical hyperparameters
-only when the supplied metadataset matches the archived metadataset.
+only when the input matches the original data checksum pinned in
+`src/utils/gp_integrity.py`.
 
-Prediction plots evaluate the fixed formulas already written in their source;
-they do not automatically evaluate the result of a new discovery run. The
-fixed-equation modules supply the formulas for coefficient-only LODO
+Prediction plots use the final formulas and full-precision constants in
+`src/equations/`; they do not automatically evaluate the result of a new
+discovery run. Those same modules supply the formulas for coefficient-only LODO
 recalibration. LODO removes all seeds, sample sizes and classifiers belonging
 to the held-out dataset, and uses the other datasets to optimize coefficients.
-The equation form and starting coefficients were selected on the full corpus,
+The equation form and starting coefficients were selected on the dataset collection,
 including the datasets later held out. LODO therefore evaluates conditional
 coefficient recalibration, not nested validation of equation discovery.
+
+`src.analysis.plot_symbolic_comparison` uses these canonical equations by
+default. Its optional `--deap-summary PATH` argument evaluates a selected prefix
+tree from a GP summary. Reproducing that summary's scores also requires the
+matching input data and descriptor definitions.
+
+## Meta-model evaluation
+
+Run `src.pipeline.evaluate_meta_models` after preparing the meta-dataset, or
+directly with the saved input tables. The selected meta-dataset already contains
+the corrected complexity and regularization descriptors. This stage evaluates
+the supplied final equations and reference regressors; it does not repair
+descriptors, train base classifiers, or search for new symbolic structures.
+
+Choose a fresh output directory, then validate and run:
+
+```bash
+python -m src.pipeline.evaluate_meta_models --dry-run --output-dir src/outputs/model_evaluation/reproduced_01 --methods DE EGWO --n-jobs 16
+python -m src.pipeline.evaluate_meta_models --output-dir src/outputs/model_evaluation/reproduced_01 --methods DE EGWO --n-jobs 16
+```
+
+Without `--output-dir`, a timestamped run is created under
+`src/outputs/model_evaluation/`. `--data PATH` selects another prepared input.
+Resume only a run started with the same source version, inputs and settings:
+repeat its command with the same output directory and add `--resume`.
+
+- Retain the 23,323 observations with `MCC > 0` and the seed-42 row-wise
+  partition of 18,658 training and 4,665 test observations.
+- Evaluate the HROCH and grouped 19-coefficient DEAP equations directly;
+  row-wise coefficients remain fixed and predictions are raw.
+- Select reference configurations through
+  `src.experiments.baselines.select_configurations`: reuse documented settings
+  where available and select missing joint settings by four-fold training-only
+  negative-MSE grid search. Keep dataset-only and joint settings separate.
+- Hold out every classifier, subsample and seed of one dataset in each of 65
+  LODO folds. Fit symbolic constants using DE and EGWO on the other datasets:
+  population 30, 100 iterations, seed 42, and sign-preserving bounds of 0.1 to
+  10 times the final reference constants. Fit reference regressors afresh with
+  their fixed joint configurations.
+- Optimize raw training MSE and report LODO predictions both raw and clipped to
+  the training-fold target range. Estimate uncertainty with 2,000 whole-dataset
+  bootstrap resamples.
+- Use `src.analysis.model_diagnostics` for correlations, HROCH derivative signs
+  and interventional TreeSHAP. TreeSHAP uses 100
+  training rows as background and all 4,665 test rows of the joint Random Forest.
+
+The run writes `positive/rowwise/metrics.csv` and
+`positive/lodo/comparison.csv`, together with detailed
+`positive/rowwise/`, `positive/lodo/`, and `positive/diagnostics/` artifacts.
+New completed runs record `complete: true` and `evaluation_ready: true` in
+`completion.json`. Check that both symbolic forms and all five reference
+regressors cover the 65 held-out datasets with finite predictions and metrics.
+
+The stored `model_evaluation/final/` artifacts contain the completed results.
+Check their `complete` status, fold counts and finite-result indicators. Run
+new evaluations in a fresh directory; resume is supported only when the inputs,
+source code, versions and settings match the interrupted execution.
 
 ## Meta-level split
 
@@ -117,8 +183,10 @@ stratification over those bins and random state 42.
 
 The split is row-wise. Dataset identities, classifier identities, subsamples,
 and seed repetitions can appear in both partitions. Scores therefore describe
-in-corpus interpolation. Dataset-grouped and joint dataset–algorithm holdouts
-are required before making claims about unseen tasks or algorithm families.
+in-corpus interpolation. The complementary LODO analysis groups datasets while
+remaining conditional on the supplied forms and configurations. Fully nested
+dataset-grouped and joint dataset–algorithm holdouts assess stronger claims
+about independently unseen tasks or algorithm families.
 
 ## Algorithm descriptors
 
@@ -127,38 +195,3 @@ The seven algorithm descriptors are compact heuristics. In particular,
 structural-size proxy. It is not measured hardware utilization, latency, FLOPs,
 or a comparable parameter count. The full formulas and encodings are listed in
 [`model-descriptors.md`](model-descriptors.md).
-
-## Maintenance corrections
-
-The publication version makes deterministic maintenance corrections while
-preserving every archived result:
-
-- paths are repository-relative and work from the repository root;
-- the evaluation-stage size limiter receives the required random seed;
-- the configured name `HistGradientBoosting` is used consistently;
-- comments match the implemented preprocessing, cross-validation, descriptor
-  formulas, and HROCH batch semantics;
-- joint and dataset-only reference analyses are separate command-line modes;
-- withdrawn min–max scripts, logs, and plots are excluded;
-- script and result names are descriptive and documented.
-
-These corrections do not retroactively alter the archived CSVs or reported
-metrics.
-
-## Repository reorganization
-
-Source entry points now live in `src/pipeline/`, `src/experiments/` and
-`src/analysis/`; fixed equations live in `src/equations/`. Outputs are grouped
-under `src/outputs/` by experiment, with existing files in `archived/` folders.
-The input tables, numerical results, fold checkpoints, logs and figures were
-moved without rewriting their contents. Paths recorded inside those historical
-files still describe the original layout.
-
-The [organization guide](repository-organization.md) lists module names and
-run conventions. The [move inventory](reorganization_manifest.csv) records
-every pre-existing file in `src`, its new location, original size and SHA-256
-where recorded. Raw source CSV files stayed in place and were inventoried by
-path and size without hashing their contents.
-
-This reorganization was reviewed through file inspection only. No Python code,
-training, tests, compilation, imports or validation scripts were executed.

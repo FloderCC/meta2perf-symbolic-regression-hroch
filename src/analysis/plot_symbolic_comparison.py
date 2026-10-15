@@ -1,4 +1,4 @@
-"""Compare the archived HROCH and selected full-precision DEAP equations."""
+"""Compare the final HROCH and grouped DEAP equations on corrected descriptors."""
 
 from __future__ import annotations
 
@@ -17,14 +17,12 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error, r2_score
 
 from src.equations.hroch import FEATURE_NAMES, predict as hroch_predict
-from src.paths import META_DATASET_PATH, OUTPUTS_DIR, output_run_directory
+from src.equations.extended import predict as deap_predict
+from src.paths import META_DATASET_PATH, output_run_directory
 from src.utils.meta_regression import adjusted_r2, smape, stratified_regression_split
 from src.utils.pipeline_integrity import read_meta_dataset
 
 
-DEAP_SUMMARY_PATH = (
-    OUTPUTS_DIR / "genetic_programming/configuration_02/archived/summary.csv"
-)
 # Preserve the original figure's page size when LaTeX scales it to text width.
 FIGURE_PAGE_SIZE = (8.253510357480556, 4.092259114583333)
 
@@ -86,7 +84,7 @@ def plot_comparison(targets, predictions: dict[str, np.ndarray], output_dir: Pat
     figure, axes = plt.subplots(1, 2, figsize=(9.2, 4.2), sharex=True, sharey=True)
     lower = min(0.0, min(float(values.min()) for values in predictions.values())) - .03
     upper = max(1.0, max(float(values.max()) for values in predictions.values())) + .03
-    titles = {"HROCH": "HROCH: simpler expression", "DEAP": "DEAP: 400-node expression"}
+    titles = {"HROCH": "HROCH: simpler expression", "DEAP": "DEAP: more complex expression"}
     for axis, name in zip(axes, ("HROCH", "DEAP")):
         values = predictions[name]
         axis.scatter(targets, values, s=8, alpha=.23, edgecolors="none",
@@ -123,6 +121,8 @@ def plot_comparison(targets, predictions: dict[str, np.ndarray], output_dir: Pat
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, default=META_DATASET_PATH)
+    parser.add_argument("--deap-summary", type=Path,
+                        help="Explicitly evaluate a historical DEAP prefix tree instead of the final equation")
     parser.add_argument("--output-dir", type=Path,
                         default=output_run_directory("figures", "symbolic_comparison"))
     args = parser.parse_args()
@@ -136,7 +136,8 @@ def main() -> None:
     features = frame.loc[:, list(FEATURE_NAMES)]
     targets = frame["MCC"]
     X_train, X_test, y_train, y_test = stratified_regression_split(features, targets)
-    predictors = {"HROCH": hroch_predict, "DEAP": load_deap_predictor(DEAP_SUMMARY_PATH)}
+    predictors = {"HROCH": hroch_predict,
+                  "DEAP": load_deap_predictor(args.deap_summary) if args.deap_summary else deap_predict}
     metrics = []
     test_predictions = {}
     for name, predictor in predictors.items():

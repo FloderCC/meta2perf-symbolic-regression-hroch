@@ -94,7 +94,7 @@ def get_training_complexity_given_model(model):
     if model in ["RF", "ExtraTrees"]:
         return encode_training_complexity("O(n * m * log(m))")
     if model == "HistGradientBoosting":
-        return encode_training_complexity("O(m)")
+        return encode_training_complexity("O(n * m)")
     if model == "Bagging":
         return encode_training_complexity("O(n * m * log(m))")
     if model in ["MLP", "DNN"]:
@@ -122,7 +122,7 @@ def get_prediction_complexity_given_model(model):
     if model in ["DT", "ExtraTree", "RF", "ExtraTrees", "HistGradientBoosting", "Bagging"]:
         return encode_prediction_complexity("O(log(m))")
     if model in ["MLP", "DNN"]:
-        return encode_prediction_complexity("O(n * m)")
+        return encode_prediction_complexity("O(m)")
     raise ValueError(f"Model {model} not recognized for prediction complexity calculation.")
 
 df_meta_dataset["Prediction Complexity"] = df_meta_dataset["Model"].apply(get_prediction_complexity_given_model)
@@ -151,8 +151,10 @@ def get_regularization_number_of_parameters_given_model(model, hyperparameters):
 
     if model in ["LR", "LinearSVC", "Perceptron"]:
         return encode_regularization(hyperparameters_as_dict["penalty"])
-    if model in ["Ridge", "BernoulliNB"]:
-        return encode_regularization("l2" if hyperparameters_as_dict["alpha"] != 0.1 else None)
+    if model == "Ridge":
+        return encode_regularization("l2" if hyperparameters_as_dict["alpha"] > 0 else None)
+    if model == "BernoulliNB":
+        return encode_regularization("laplace" if hyperparameters_as_dict["alpha"] > 0 else None)
     if model in ["SGD"]:
         return encode_regularization("l2") # the default value is l2
     if model in ["DT", "ExtraTree", "GaussianNB", "Bagging", "RF", "ExtraTrees", "AdaBoost"]: # they do not have explicit regularization parameters
@@ -160,7 +162,7 @@ def get_regularization_number_of_parameters_given_model(model, hyperparameters):
     if model in ["HistGradientBoosting"]:
         return encode_regularization("l2" if hyperparameters_as_dict["l2_regularization"] != 0.0 else None)
     if model in ["MLP", "DNN"]:
-        return encode_regularization("l2" if hyperparameters_as_dict["alpha"] != 0.0001 else None) # the possible values are 0.0001, 0.001, 0.01
+        return encode_regularization("l2" if hyperparameters_as_dict["alpha"] > 0 else None) # the possible values are 0.0001, 0.001, 0.01
     raise ValueError(f"Model {model} not recognized for regularization calculation.")
 
 df_meta_dataset["Regularization"] = df_meta_dataset.apply(

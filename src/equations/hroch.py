@@ -1,4 +1,4 @@
-"""Second supplied fixed equation, with six recalibratable coefficients a..f."""
+"""Final HROCH equation for the corrected meta-dataset, with six coefficients."""
 
 from __future__ import annotations
 
@@ -15,12 +15,12 @@ FEATURE_NAMES = (
 )
 COEFFICIENT_NAMES = ("a", "b", "c", "d", "e", "f")
 DEFAULT_COEFFICIENTS = np.array([
-    3.3237551265443805,
-    1.4435745948155903,
-    3.8006530371420686,
-    12.379278274862575,
-    2.1575551710877265,
-    -0.011386770840701929,
+    4.865837522725318,
+    1.1256530281989316,
+    3.5256330733899675,
+    12.507643915250597,
+    2.132726876109822,
+    -0.009773204206524137,
 ], dtype=float)
 DEFAULT_COEFFICIENTS.setflags(write=False)
 
@@ -28,8 +28,8 @@ DEFAULT_COEFFICIENTS.setflags(write=False)
 def predict(features, coefficients=None) -> np.ndarray:
     """Evaluate the supplied arithmetic in the explicit x0..x18 feature order.
 
-    Only a..f change. The literal 1, the power 2 and the equation structure stay
-    fixed. Nonfinite final outputs remain visible for the optimizer to penalize.
+    Defaults are the supplied final coefficients. An explicit coefficient vector
+    is accepted for LODO fitting. Nonfinite outputs remain visible to callers.
     """
     if isinstance(features, pd.DataFrame):
         x = features.loc[:, list(FEATURE_NAMES)].to_numpy(dtype=float)

@@ -24,3 +24,7 @@ src/outputs/metadataset/*/base_classifier_hyperparameters_seed_*.csv
 src/cache/
 tmp
 reviewer_response.txt
+
+# Recoverable execution state; final metrics, predictions and settings remain versioned.
+src/outputs/**/folds/
+src/outputs/**/checkpoints/

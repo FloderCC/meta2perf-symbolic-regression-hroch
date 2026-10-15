@@ -6,8 +6,12 @@ import ast
 import json
 from pathlib import Path
 
-from src.paths import ARCHIVED_METADATASET_DIR, SRC_DIR
+from src.paths import SRC_DIR
 from src.utils.artifact_integrity import atomic_json, content_fingerprint, file_sha256, package_versions
+
+
+# Metadata-free summaries belong to the original, uncorrected input snapshot.
+LEGACY_META_DATASET_SHA256 = "e6cecac6725e83c957c0d7fbcb29a5a8d6685ed783a71d5992117b1b6348e5da"
 
 
 def engine_fingerprint(files: tuple[str, ...]) -> str:
@@ -88,9 +92,8 @@ def validate_summary_context(frame, path: Path, context: dict, *, allow_legacy_a
         if frame["context_fingerprint"].isna().any() or not frame["context_fingerprint"].eq(context["fingerprint"]).all():
             raise ValueError(f"GP summary belongs to different data, feature order, code or versions: {path}")
         return
-    archived_data = ARCHIVED_METADATASET_DIR / "meta_dataset.csv"
     if (allow_legacy_archive and path.parent.name == "archived"
-            and context["data_sha256"] == file_sha256(archived_data)):
+            and context["data_sha256"] == LEGACY_META_DATASET_SHA256):
         # Historical hyperparameters remain readable for the historical data.
         # Their old caches/checkpoints are never accepted as current artifacts.
         return

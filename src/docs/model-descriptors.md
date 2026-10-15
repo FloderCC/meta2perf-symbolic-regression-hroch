@@ -46,6 +46,8 @@ The raw value below is transformed with the natural logarithm before it is added
 
 **Table 2 – Training and inference complexities of the evaluated models regarding `n` (samples) and `m` (features).**
 
+These are simplified descriptors under fixed algorithm budgets. MLP/DNN inference is per observation: its general cost is proportional to the evaluated connections, reducing to `O(m)` when hidden-layer and output sizes are fixed. HGB histogram construction is `O(n × m)`; the descriptor assumes fixed iteration, bin-count and tree-size budgets. Neither correction changes the already measured classifier MCC targets.
+
 | Model | `train_complexity` | `inf_complexity` |
 |-------|--------------------|------------------|
 | LR | `O(n × m)` | `O(m)` |
@@ -58,12 +60,12 @@ The raw value below is transformed with the natural logarithm before it is added
 | RF | `O(n × m × log m)` | `O(log m)` |
 | ETs | `O(n × m × log m)` | `O(log m)` |
 | AB | `O(n × m)` | `O(m)` |
-| HGB | `O(m)` | `O(log m)` |
+| HGB | `O(n × m)` | `O(log m)` |
 | Bagging | `O(n × m × log m)` | `O(log m)` |
 | GaussianNB | `O(n × m)` | `O(m)` |
 | BernoulliNB | `O(n × m)` | `O(m)` |
-| MLP | `O(n × m)` | `O(n × m)` |
-| DNN | `O(n × m)` | `O(n × m)` |
+| MLP | `O(n × m)` | `O(m)` |
+| DNN | `O(n × m)` | `O(m)` |
 
 
 ---
@@ -75,7 +77,7 @@ The raw value below is transformed with the natural logarithm before it is added
 | Model | `model_type` | `regularization` | `rob_outliers` | `repr_capacity` |
 |-------|---------------|------------------|----------------|-----------------|
 | LR | Linear | L1, L2, or None (depends on `penalty`) | No | Low |
-| Ridge | Linear | L2 (if `alpha ≠ 0.1`), None (if `alpha = 0.1`) | No | Low |
+| Ridge | Linear | L2 (if `alpha > 0`), None (if `alpha = 0`) | No | Low |
 | SGD | Linear | L2 (default) | Medium | Medium |
 | Perceptron | Linear | L1, L2, or ElasticNet (depends on `penalty`) | Medium | Medium |
 | LinearSVC | Linear | L2 | No | Medium |
@@ -87,9 +89,13 @@ The raw value below is transformed with the natural logarithm before it is added
 | HGB | Ensemble | L2 (if `l2_regularization ≠ 0.0`), None (if `l2_regularization = 0.0`) | Yes | High |
 | Bagging | Ensemble | None | Yes | Medium |
 | GaussianNB | Probabilistic | None | No | Low |
-| BernoulliNB | Probabilistic | L2 (if `alpha ≠ 0.1`), None (if `alpha = 0.1`) | No | Low |
-| MLP | Neural Network | L2 (if `alpha ≠ 0.0001`), None (if `alpha = 0.0001`) | No | Very High |
-| DNN | Neural Network | L2 (if `alpha ≠ 0.0001`), None (if `alpha = 0.0001`) | No | Very High |
+| BernoulliNB | Probabilistic | Laplace/Lidstone additive smoothing (if `alpha > 0`), None (if `alpha = 0`) | No | Low |
+| MLP | Neural Network | L2 (if `alpha > 0`), None (if `alpha = 0`) | No | Very High |
+| DNN | Neural Network | L2 (if `alpha > 0`), None (if `alpha = 0`) | No | Very High |
+
+---
+
+All saved MLP/DNN and Ridge configurations have positive `alpha` and therefore use L2, code 3, including `alpha = 0.0001`. BernoulliNB's positive `alpha` controls additive probability smoothing, code 1, rather than an L2 penalty. The regularization code identifies a mechanism, not its strength.
 
 ---
 
@@ -112,7 +118,7 @@ All qualitative descriptors above were **numerically encoded** in the meta-datas
 - `O(n × m × log(m))` → **2**  
 - `O(n × m²)` → **3**
 
-### 4.3 Inference complexity (function of n and m)
+### 4.3 Per-observation inference complexity
 
 - `O(log(m))` → **0**  
 - `O(m)` → **1**  
@@ -121,7 +127,7 @@ All qualitative descriptors above were **numerically encoded** in the meta-datas
 ### 4.4 Regularization mechanism code
 
 - None → **0**  
-- Laplace → **1**  
+- Laplace/Lidstone additive smoothing → **1**
 - L1 → **2**  
 - L2 → **3**  
 - ElasticNet → **4**

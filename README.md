@@ -1,6 +1,6 @@
 # Meta2Perf: tabular-classifier performance modeling
 
-Code and archived results for the manuscript **“Exploring Tabular Classifier
+Code and results for the manuscript **“Exploring Tabular Classifier
 Performance from Dataset and Algorithm Descriptors with Symbolic Regression.”**
 
 The project builds a meta-dataset linking 12 dataset meta-features, seven
@@ -10,12 +10,26 @@ fits symbolic expressions with HROCH and DEAP, evaluates five reference
 meta-regressors, and studies fixed-equation coefficient recalibration through
 leave-one-dataset-out (LODO) experiments.
 
+## Current evaluation results
+
+The completed analysis is stored in
+[`src/outputs/model_evaluation/final/`](src/outputs/model_evaluation/final/).
+Its [row-wise metrics](src/outputs/model_evaluation/final/positive/rowwise/metrics.csv)
+and [LODO metrics](src/outputs/model_evaluation/final/positive/lodo/comparison.csv) use
+the corrected meta-dataset and final equations. Row-wise predictions are raw;
+primary LODO results use training-fold clipping. The tables below retain the
+earlier experimental results as historical records.
+
 ## Main archived results
 
 All values below come from existing archived logs or summary tables and are
 rounded to three decimal places. The complete meta-dataset contains 25,836
 rows; the reported meta-regression analyses retain the 23,323 rows with
 `MCC > 0`.
+
+These tables document the historical experiments. The selected meta-dataset
+and equation modules now contain the corrected descriptors and final constants;
+the commands below reproduce the current analyses from those inputs.
 
 ### Joint descriptors: row-wise test partition
 
@@ -122,7 +136,7 @@ scores above.
 └── src/
     ├── experiment_config.py
     ├── paths.py
-    ├── pipeline/       # tuning, evaluation, meta-features and the final join
+    ├── pipeline/       # preparation, final join and meta-model evaluation
     ├── experiments/
     │   ├── hroch/
     │   ├── baselines/
@@ -141,9 +155,8 @@ All commands below are run from the repository root with `python -m ...`.
 Paths are resolved relative to the repository, so it is not necessary to
 change the working directory to `src/`.
 
-The complete script mapping and output conventions are documented in
-[Repository organization](src/docs/repository-organization.md). The move
-inventory is retained in [reorganization_manifest.csv](src/docs/reorganization_manifest.csv).
+Current modules and output conventions are documented in
+[Repository organization](src/docs/repository-organization.md).
 
 ## Installation
 
@@ -173,8 +186,24 @@ python -m pip install -r requirements.txt
 
 The original experiment snapshot did not record exact dependency versions.
 The requirements file pins the current maintenance environment; it cannot
-reconstruct the historical environment bit-for-bit. Installation and experiment
-execution were not rerun during this static maintenance review.
+reconstruct the historical environment bit-for-bit.
+
+## Reproduce the current analyses
+
+The saved meta-dataset already contains the corrected complexity and
+regularization descriptors. The runner evaluates the final equations, fits the
+reference regressors, performs 65-fold LODO, and generates the correlation,
+directional and TreeSHAP analyses. It retains `MCC > 0` and the shared row-wise
+split. Symbolic coefficients are fitted only within LODO training folds.
+Choose an output directory that does not already contain results:
+
+```bash
+python -m src.pipeline.evaluate_meta_models --dry-run --output-dir src/outputs/model_evaluation/reproduced_01 --methods DE EGWO --n-jobs 16
+python -m src.pipeline.evaluate_meta_models --output-dir src/outputs/model_evaluation/reproduced_01 --methods DE EGWO --n-jobs 16
+```
+
+The protocol and output files are described in
+[Reproducing the analyses](src/docs/reproducibility.md#meta-model-evaluation).
 
 ## Use the archived results
 
@@ -185,8 +214,7 @@ figures. To select historical preparation tables explicitly in PowerShell:
 $env:META2PERF_INPUT_SOURCE = "archived"
 ```
 
-These lightweight commands evaluate the archived symbolic expressions and
-regenerate the five figures:
+These lightweight commands regenerate prediction and diagnostic figures:
 
 ```bash
 python -m src.analysis.plot_hroch_predictions
@@ -199,16 +227,22 @@ python -m src.analysis.plot_shap_relevance
 Generated figures are written to `src/outputs/figures/<analysis>/<run_id>/`.
 Existing figures are preserved in the corresponding `archived/` directories.
 
-The comparison command reads the full-precision selected DEAP prefix tree from
-`src/outputs/genetic_programming/configuration_02/archived/summary.csv` and the
-HROCH equation from `src/equations/hroch.py`. It uses the shared row-wise split
-with seed 42 and writes `Fig5_symbolic_comparison.pdf`, a PNG copy and
+The three equation-plot commands use the final HROCH and grouped DEAP equations
+in `src/equations/` and the normal selected meta-dataset input bank. Model
+evaluation is not required before plotting. The comparison uses the shared row-wise
+split with seed 42 and writes `Fig5_symbolic_comparison.pdf`, a PNG copy and
 `symbolic_comparison_metrics.csv` below
 `src/outputs/figures/symbolic_comparison/<run_id>/`. Both X axes end at 1;
 predicted MCC values remain unclipped. Its inputs are contained in the
-repository, so the generator is available when the local `tmp/` directory is
-excluded. Optional `--data` and `--output-dir` arguments select an alternative
-meta-dataset or a fresh output directory.
+repository. Optional `--data` and `--output-dir` arguments select an alternative
+meta-dataset or a fresh output directory. Passing `--deap-summary` with
+`src/outputs/genetic_programming/configuration_02/archived/summary.csv` explicitly
+uses the historical DEAP prefix tree instead of the final grouped equation.
+Reproducing its historical scores also requires its original input descriptors;
+the source and checksum are documented in the
+[reproducibility notes](src/docs/reproducibility.md#gp-selection-and-fixed-equation-analyses).
+The correlation and SHAP plotting commands continue to use the selected input
+bank and saved relevance tables, respectively.
 
 The reference meta-regressors can be rerun with either descriptor set:
 
@@ -309,7 +343,7 @@ checksum, feature order, engine fingerprint and package versions. Compatible
 screening checkpoints can continue in refinement. Generation budgets, logging
 and resume controls are excluded from the engine fingerprint, so increasing
 a run's budget can continue its checkpoint. Historical summaries can supply
-hyperparameters for the archived metadataset, but legacy caches and checkpoints
+hyperparameters only for their original input checksum; legacy caches and checkpoints
 without compatibility metadata are preserved and are not reused.
 
 The HROCH and extended-equation prediction plots evaluate formulas fixed in
@@ -372,18 +406,17 @@ The symbolic-regression run uses HROCH with population 1,000, tournament 500,
 and a 259,200-second limit. Under HROCH's 64-row batch semantics, the last two
 settings correspond to 128 and 12,800 rows. These settings were selected
 exploratorily to balance predictive fit and equation complexity; they were not
-the result of an exhaustive search. The historical log contains its completion
-timestamp but not a start timestamp, so the exact elapsed runtime cannot be
-recovered.
+the result of an exhaustive search.
 
 ## Documentation
 
+- [Meta-model evaluation protocol and outputs](src/docs/reproducibility.md#meta-model-evaluation)
 - [Datasets and targets](src/docs/datasets.md)
 - [Base-classifier hyperparameter spaces](src/docs/ml-hyperparams.md)
 - [Algorithm descriptor definitions](src/docs/model-descriptors.md)
 - [Reference meta-regressor grids](src/docs/reference-meta-regressor-hyperparams.md)
 - [Reproducibility and validity notes](src/docs/reproducibility.md)
-- [Repository organization and script mapping](src/docs/repository-organization.md)
+- [Repository organization and entry points](src/docs/repository-organization.md)
 - [Archived tables and experiment outputs](src/outputs/README.md)
 - [Archived experiment logs](src/outputs/archived_logs.md)
 
@@ -397,11 +430,8 @@ python -m compileall -q src tools
 ```
 
 These checks validate source syntax, archived CSV schemas and row counts,
-documented dataset coverage, and the absence of the withdrawn min–max analysis.
+and documented dataset coverage.
 They do not rerun model training.
-
-These commands are documented for later use. No Python modules, training,
-tests or validators were executed during the repository reorganization.
 
 ## Citation
 

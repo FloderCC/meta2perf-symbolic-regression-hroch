@@ -1,12 +1,16 @@
-"""Evaluate and plot the archived symbolic-regression expression."""
+"""Evaluate and plot the final HROCH expression on corrected descriptors."""
 
 from __future__ import annotations
+
+import argparse
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, r2_score
 
+from src.equations.hroch import predict as symbolic_predict
 from src.utils.meta_regression import adjusted_r2, smape, stratified_regression_split
 from src.utils.pipeline_integrity import read_meta_dataset
 from src.paths import (
@@ -20,36 +24,15 @@ TARGET = "MCC"
 IDENTIFIER_COLUMNS = ["Seed", "Dataset", "Sample Size", "Model"]
 
 
-def symbolic_predict(features: pd.DataFrame) -> np.ndarray:
-    """Evaluate the final expression using the feature order in meta_dataset.csv."""
-
-    x = features.to_numpy()
-    a = 3.3237551265443805
-    b = 1.4435745948155903
-    c = 3.8006530371420686
-    d = 12.379278274862575
-    e = 2.1575551710877265
-    f = -0.011386770840701929
-
-    t1 = (x[:, 13] - x[:, 15]) - a
-    t2 = x[:, 11] + b
-    t3 = x[:, 11] + x[:, 9] + x[:, 1]
-    t4 = ((x[:, 14] + t1) / t1) * x[:, 15] * t2
-    t5 = (x[:, 10] * t4) / t3
-    t6 = (
-        (c + (x[:, 4] - d / x[:, 6]) * (x[:, 13] - x[:, 15]))
-        * (x[:, 0] / x[:, 2])
-    ) ** 2 + x[:, 4] + t2
-
-    numerator = (x[:, 17] + 1) * t5 - t6 - (x[:, 5] + x[:, 6]) / e + x[:, 1]
-    denominator = t3 * f * (t4 + x[:, 9] + x[:, 1]) - t6
-    return numerator / denominator
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--data', type=Path, default=META_DATASET_PATH)
+    args = parser.parse_args()
     figures_dir = output_run_directory("figures", "hroch_predictions")
     ensure_output_directories(figures_dir)
-    meta_dataset = read_meta_dataset(META_DATASET_PATH)
+    meta_dataset = read_meta_dataset(args.data)
     meta_dataset = meta_dataset.drop(columns=IDENTIFIER_COLUMNS)
     meta_dataset = meta_dataset[meta_dataset[TARGET] > 0]
     X = meta_dataset.drop(columns=TARGET)

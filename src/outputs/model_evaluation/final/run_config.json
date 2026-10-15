@@ -1,0 +1,248 @@
+{
+  "schema_version": 3,
+  "protocol": "positive_mcc_supplied_final_equation_evaluation_and_conditional_lodo",
+  "descriptor_version": "corrected-complexity-regularization-v1",
+  "sources": {
+    "base_hyperparameters": "src/outputs/metadataset/archived/base_classifier_hyperparameters.csv",
+    "meta_dataset": "src/outputs/metadataset/archived/meta_dataset.csv"
+  },
+  "source_sha256": {
+    "base_hyperparameters": "3e0c0afd1a6a8d5cfc3f750fd80add4233e30fd8593a12d8585261cf60f36691",
+    "meta_dataset": "6896cb89884d06518ab66425d21ae8f5292a03916bc88a537d86f989917228e4"
+  },
+  "corrected_data_sha256": "6896cb89884d06518ab66425d21ae8f5292a03916bc88a537d86f989917228e4",
+  "code_sha256": {
+    "src/utils/artifact_integrity.py": "21fad253154f4a47441a620d33edbe9d85c139d2ee98f633fc9695e5dd8f004f",
+    "src/utils/meta_regression.py": "6b09a9b7c1bfbedf716396ef4e63013c5fc0e8a34fedf4c7bc17e32fa94bf839",
+    "src/utils/pipeline_integrity.py": "f9a83e87e0becf49ca71d53351342164e11d1fbf72c124b3f3c3f082cbdd5818",
+    "src/paths.py": "898da5f9a5c9ea0de09c0b231e3e60be689f21ed7051cfaec1efa0a77cdd69ae",
+    "src/equations/hroch.py": "5cfa49a246183812764aa418424e0a097022e4c7085f0c127a20704ccc8375b1",
+    "src/equations/extended.py": "a2acd572fbac34c02aea7a4aedaabf9360f8dc6c00540e68a7b1dfc6be918506",
+    "src/experiments/recalibration/recalibrate_hroch_equation_lodo.py": "2d9d1a19d44c67ef6f199e9ca26b1436e13bf92275a387a11298aaa138b47443",
+    "src/experiments/recalibration/recalibrate_extended_equation_lodo.py": "48f8b62b3aa34bf6fba6c3fcbbe51532017d66842fbeb8ec9eaa6b144f6c6c14",
+    "src/experiments/baselines/benchmark_lodo.py": "6e840ae9b7f749faf1fae1e26f37855df43961e05bcb3b87a6914e60fec4686f",
+    "src/experiments/baselines/benchmark.py": "08213d502985886176aee75d4a80eea25d9411cd77c671d0f71f76816d325883"
+  },
+  "versions": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.17.1",
+    "joblib": "1.6.0",
+    "pyBlindOpt": "0.5.0",
+    "EmptySpaceSearch": "0.7.1",
+    "torann": "0.5.1",
+    "shap": "0.52.0",
+    "matplotlib": "3.11.2",
+    "threadpoolctl": "3.7.0"
+  },
+  "scopes": [
+    "positive"
+  ],
+  "methods": [
+    "DE",
+    "EGWO"
+  ],
+  "models": [
+    "LinearRegression",
+    "DecisionTreeRegressor",
+    "RandomForestRegressor",
+    "GradientBoostingRegressor",
+    "MLPRegressor"
+  ],
+  "population_size": 30,
+  "iterations": 100,
+  "n_jobs": 16,
+  "coefficient_factors": [
+    0.1,
+    10.0
+  ],
+  "bootstrap": 2000,
+  "max_folds": null,
+  "smoke_test": false,
+  "shap_background": 100,
+  "shap_samples": null,
+  "skip_shap": false,
+  "splits": {
+    "positive": {
+      "rows": 23323,
+      "datasets": 65,
+      "train_rows": 18658,
+      "test_rows": 4665,
+      "split_sha256": "740ce5561b156e738c1e51d29d7ca2d530ebbad51cf900a7b05338088691b915"
+    }
+  },
+  "seed": 42,
+  "rowwise_equations": {
+    "HROCH": {
+      "equation": "HROCH",
+      "coefficient_order": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f"
+      ],
+      "coefficients": [
+        4.865837522725318,
+        1.1256530281989316,
+        3.5256330733899675,
+        12.507643915250597,
+        2.132726876109822,
+        -0.009773204206524137
+      ],
+      "source_module": "src/equations/hroch.py",
+      "source_sha256": "5cfa49a246183812764aa418424e0a097022e4c7085f0c127a20704ccc8375b1",
+      "procedure": "evaluate_supplied_final_equation"
+    },
+    "DEAP": {
+      "equation": "DEAP",
+      "coefficient_order": [
+        "C_4_44",
+        "C_20_65",
+        "C_0_29",
+        "C_0_31",
+        "C_16_53",
+        "C_0_62",
+        "C_3_92",
+        "C_48_25",
+        "C_49_93",
+        "C_37_97",
+        "C_1_75",
+        "C_0_98",
+        "C_31_51",
+        "C_33_56",
+        "C_12_03",
+        "C_9_23",
+        "C_39_37",
+        "C_33_34",
+        "C_77_11"
+      ],
+      "coefficients": [
+        4.436387158962334,
+        21.017598763216697,
+        0.26149710186442016,
+        0.4370849413454668,
+        16.711964883971923,
+        0.708763384574498,
+        3.6748734018085374,
+        45.52942272372836,
+        83.39007680021791,
+        36.46003772076081,
+        1.652759610031753,
+        0.9071889832719622,
+        34.92368710274265,
+        32.38844287648101,
+        11.662600535000225,
+        9.243015416208092,
+        35.26855405622173,
+        31.600629130095175,
+        76.31302514262624
+      ],
+      "source_module": "src/equations/extended.py",
+      "source_sha256": "a2acd572fbac34c02aea7a4aedaabf9360f8dc6c00540e68a7b1dfc6be918506",
+      "procedure": "evaluate_supplied_final_equation"
+    }
+  },
+  "deap_form": "src/equations/extended.py: supplied final grouped19-coefficient expression",
+  "mcc_filter": "MCC > 0",
+  "evaluated_population": {
+    "mcc_filter": "MCC > 0",
+    "rows": 23323,
+    "changed_rows": 6383,
+    "changed_fraction": 0.27367834326630364,
+    "changed_percent": 27.367834326630366,
+    "datasets": 65
+  },
+  "source_corpus": {
+    "rows": 25836,
+    "changed_rows": 7334
+  },
+  "selection": "Supplied final symbolic defaults evaluated directly; missing reference settings selected on row-wise training; LODO constants fitted within each training fold",
+  "reference_selection": {
+    "joint": {
+      "models": {
+        "LinearRegression": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "default_parameters"
+        },
+        "DecisionTreeRegressor": {
+          "n_candidates": 48,
+          "cv_fits": 192,
+          "selection": "training_grid_search"
+        },
+        "RandomForestRegressor": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "archived_configuration"
+        },
+        "GradientBoostingRegressor": {
+          "n_candidates": 16,
+          "cv_fits": 64,
+          "selection": "training_grid_search"
+        },
+        "MLPRegressor": {
+          "n_candidates": 12,
+          "cv_fits": 48,
+          "selection": "training_grid_search"
+        }
+      },
+      "total_cv_fits": 304,
+      "feature_set": "joint",
+      "cv": 4,
+      "scoring": "neg_mean_squared_error",
+      "smoke_test": false
+    },
+    "dataset_only": {
+      "models": {
+        "LinearRegression": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "default_parameters"
+        },
+        "DecisionTreeRegressor": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "archived_configuration"
+        },
+        "RandomForestRegressor": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "archived_configuration"
+        },
+        "GradientBoostingRegressor": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "archived_configuration"
+        },
+        "MLPRegressor": {
+          "n_candidates": 0,
+          "cv_fits": 0,
+          "selection": "archived_configuration"
+        }
+      },
+      "total_cv_fits": 0,
+      "feature_set": "dataset_only",
+      "cv": 4,
+      "scoring": "neg_mean_squared_error",
+      "smoke_test": false
+    }
+  },
+  "reference_configuration_sources": {
+    "joint": {
+      "src/outputs/random_forest_shap/archived/run.log": "123407b0ff5b35e86b27210aa29ecbf9dbc509b3d4a14d5196c856ac53a76dfd"
+    },
+    "dataset_only": {
+      "src/outputs/baselines/dataset_only/archived/run.log": "a5c415e4479420b7e425fc11b98c2e1b3c496a4cd69f078a8fec26ad136d9b68"
+    }
+  },
+  "scope_statement": "Supplied final equations are evaluated here; this runner does not perform symbolic discovery. LODO is conditional on fixed forms and selected reference configurations, without nested selection.",
+  "execution_plan": {
+    "new_reference_cv_fits": 0,
+    "reuse_reference_and_diagnostic_analyses": true,
+    "rowwise_symbolic_evaluation": "supplied defaults, without fitting"
+  },
+  "evaluated_data_path": "src/outputs/metadataset/archived/meta_dataset.csv"
+}

@@ -1,0 +1,20 @@
+feature,mean_absolute_shap,name
+class_ent,0.016141028913641834,class_ent
+eq_num_attr,0.10337898943596056,eq_num_attr
+gravity,0.013044724757148319,gravity
+inst_to_attr,0.010099020873569238,inst_to_attr
+nr_attr,0.010000430569773207,nr_attr
+nr_bin,0.008161059252874013,nr_bin
+nr_class,0.003870180607262879,nr_class
+nr_cor_attr,0.009836547563516103,nr_cor_attr
+nr_inst,0.01733268460458348,nr_inst
+nr_norm,0.0016877448829326024,nr_norm
+nr_outliers,0.008584228457646552,nr_outliers
+ns_ratio,0.05511364602441132,ns_ratio
+Processing Units Number,0.03612198510820696,proc_units
+Model Type,0.06629158320771958,model_type
+Training Complexity,0.007332728867314006,train_complexity
+Prediction Complexity,0.015608046819040843,inf_complexity
+Regularization,0.008103454142554974,regularization
+Robust to Outliers,0.026756548318959617,rob_outliers
+Representational Capacity,0.008928116676634592,repr_capacity

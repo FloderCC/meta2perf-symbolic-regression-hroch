@@ -4,6 +4,38 @@ All generated tables, logs, figures and checkpoints are grouped here by
 experiment and run. Existing outputs are preserved in `archived/` directories.
 New experiment and figure runs use UTC timestamp ids by default.
 
+## Final meta-model evaluation
+
+[`model_evaluation/final/`](model_evaluation/final/) contains the completed
+evaluation of the corrected meta-dataset and final equations:
+
+| Artifact | Contents |
+|---|---|
+| [`positive/rowwise/metrics.csv`](model_evaluation/final/positive/rowwise/metrics.csv) | Train/test metrics for the two symbolic equations and both reference-regressor feature sets. |
+| [`positive/lodo/comparison.csv`](model_evaluation/final/positive/lodo/comparison.csv) | Dataset-grouped metrics, bootstrap intervals, and raw/clipped sensitivity. |
+| [`metadataset/archived/meta_dataset.csv`](metadataset/archived/meta_dataset.csv) | Shared prepared input, including nonpositive MCC rows excluded from the analyses. |
+| [`positive/rowwise/coefficients.json`](model_evaluation/final/positive/rowwise/coefficients.json) | Supplied final HROCH and grouped DEAP coefficients. |
+| `positive/rowwise/` | The shared split, reference configurations, predictions and symbolic comparison figure. |
+| `positive/lodo/` | Per-fold metrics, predictions, coefficients and configurations for both equations and five reference regressors. |
+| `positive/diagnostics/` | Correlations, HROCH derivatives and interventional TreeSHAP results. |
+| [`completion.json`](model_evaluation/final/completion.json) | Recorded completion status and input/code provenance. |
+
+The analyses retain 23,323 observations with `MCC > 0`. Row-wise metrics use
+raw predictions; the primary LODO comparison clips predictions to each
+training-fold target range. Confirm the recorded `complete` status, coverage of
+all 65 held-out datasets, and finite predictions and metrics.
+
+Read the saved final results directly, or use a fresh output directory to run
+the evaluation. New runs from `src.pipeline.evaluate_meta_models` are written
+under `model_evaluation/<run_id>/` and record their `evaluation_ready` status.
+
+Resume checkpoints in `folds/` and `checkpoints/` remain local, recoverable
+execution state; final metrics, predictions and settings are retained alongside
+the results. The [evaluation protocol](../docs/reproducibility.md#meta-model-evaluation)
+documents the command and interpretation.
+
+## Earlier experiment outputs
+
 | File | Description |
 |---|---|
 | `metadataset/archived/base_classifier_hyperparameters.csv` | Selected classifier configuration for each seed, dataset, sampling fraction, and model. |
@@ -33,6 +65,7 @@ Other output families:
 
 | Directory | Contents |
 |---|---|
+| `model_evaluation/` | Complete meta-model evaluation runs: row-wise, grouped LODO and diagnostics. |
 | `hroch/` | Symbolic-regression training logs and equation. |
 | `baselines/joint/`, `baselines/dataset_only/` | Reference meta-regressor logs for each feature set. |
 | `random_forest_shap/` | Random-forest logs and SHAP relevance tables. |
@@ -55,15 +88,9 @@ an individual historical fallback for a missing build table.
 New GP runs retain `run_context.json`; their summaries, checkpoints and cache
 metadata identify the metadataset checksum, feature order, engine and versions.
 Reusable GP population caches belong in `src/cache/gp_initial_populations/`,
-outside the result families. Historical artifacts are preserved without adding
-retrospective compatibility metadata.
+outside the result families. Reuse requires matching compatibility metadata.
 
 These files are archived outputs, not synthetic examples. The original raw
 datasets are not included in the publication repository. See
 [reproducibility notes](../docs/reproducibility.md) for row counts, filtering,
 split details, and validity limitations.
-
-Historical paths embedded in archived CSV, JSON and log files are retained
-as provenance. Use the [move inventory](../docs/reorganization_manifest.csv)
-to translate their old repository paths. No archived numerical, log, JSON or
-figure file was rewritten during reorganization.

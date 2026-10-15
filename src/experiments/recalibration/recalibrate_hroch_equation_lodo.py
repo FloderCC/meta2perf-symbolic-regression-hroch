@@ -83,7 +83,7 @@ def coefficient_bounds(lower_factor: float, upper_factor: float) -> np.ndarray:
 def training_mse(coefficients: np.ndarray, X: np.ndarray, y: np.ndarray) -> float:
     """Penalize invalid final outputs without discarding training observations."""
     prediction = predict(X, coefficients)
-    if not np.isfinite(prediction).all():
+    if prediction.shape != y.shape or not np.isfinite(prediction).all():
         return BAD_LOSS
     with np.errstate(over="ignore", invalid="ignore"):
         loss = float(np.mean(np.square(prediction - y)))
@@ -117,8 +117,16 @@ def initial_population(objective, bounds: np.ndarray, n_pop: int,
 
 def calibrate_fold(X_train: np.ndarray, y_train: np.ndarray, bounds: np.ndarray,
                    *, n_pop: int, n_iter: int, n_jobs: int,
-                   dataset_label: str = "fold") -> dict:
+                   dataset_label: str = "fold", methods=("DE", "EGWO")) -> dict:
     """No held-out features or targets enter initialization, selection or loss."""
+    methods = tuple(methods)
+    if not methods or len(methods) != len(set(methods)) or set(methods) - {"DE", "EGWO"}:
+        raise ValueError("Select distinct optimizer names from DE and EGWO.")
+    X_train, y_train = np.asarray(X_train, dtype=float), np.asarray(y_train, dtype=float)
+    if (X_train.ndim != 2 or X_train.shape[1] != len(FEATURE_NAMES)
+            or y_train.ndim != 1 or len(y_train) != len(X_train) or not len(y_train)
+            or not np.isfinite(X_train).all() or not np.isfinite(y_train).all()):
+        raise ValueError("Training requires finite nonempty X/y with the documented feature order.")
     # Each worker evaluates a complete candidate deterministically. The seeded
     # sampler and optimizer stay in the main process; workers draw no randomness.
     objective = partial(training_mse, X=X_train, y=y_train)
@@ -138,7 +146,8 @@ def calibrate_fold(X_train: np.ndarray, y_train: np.ndarray, bounds: np.ndarray,
                   "original_train_mse": original_loss, "seed": RANDOM_SEED,
                   "workers": workers, "methods": {}}
         optimizers = {"DE": differential_evolution, "EGWO": enhanced_grey_wolf_optimization}
-        for name, optimizer in optimizers.items():
+        for name in methods:
+            optimizer = optimizers[name]
             print(f"  [{dataset_label}] Starting {name} optimization: population={n_pop}, "
                   f"iterations={n_iter}, workers={workers}, seed={RANDOM_SEED}", flush=True)
             started = perf_counter()
@@ -163,6 +172,31 @@ def calibrate_fold(X_train: np.ndarray, y_train: np.ndarray, bounds: np.ndarray,
                 "best_mse_history": np.asarray(history[0], dtype=float).tolist(),
             }
     return result
+
+
+def validate_fold_checkpoint(fold, *, label, row_ids, n_train, bounds,
+                             methods, n_iter, run_config_sha256):
+    """Reject copied, truncated, or incompatible recovery checkpoints."""
+    expected = {"dataset": label, "row_ids": row_ids, "n_train": n_train,
+                "seed": RANDOM_SEED, "run_config_sha256": run_config_sha256}
+    if any(fold.get(key) != value for key, value in expected.items()):
+        raise ValueError("Checkpoint fold population or run provenance does not match.")
+    if set(fold.get("methods", {})) != set(methods):
+        raise ValueError("Checkpoint optimizer names do not match.")
+    for key in ("original_train_mse", "initial_best_mse", "initialization_seconds"):
+        value = fold.get(key, np.nan)
+        if not np.isfinite(value) or value < 0:
+            raise ValueError(f"Invalid checkpoint {key}.")
+    for name in methods:
+        detail = fold["methods"][name]
+        coefficients = np.asarray(detail.get("coefficients", []), dtype=float)
+        curve = np.asarray(detail.get("best_mse_history", []), dtype=float)
+        if (coefficients.shape != (len(bounds),) or not np.isfinite(coefficients).all()
+                or np.any(coefficients < bounds[:, 0]) or np.any(coefficients > bounds[:, 1])
+                or curve.shape != (n_iter,) or not np.isfinite(curve).all()
+                or not np.isfinite(detail.get("train_mse", np.nan))
+                or not 0 <= detail.get("train_mse", BAD_LOSS) < BAD_LOSS):
+            raise ValueError(f"Invalid {name} checkpoint coefficients, history, or loss.")
 
 
 def score(y: np.ndarray, prediction: np.ndarray) -> dict:
@@ -224,12 +258,18 @@ def write_results(directory: Path, frame: pd.DataFrame, completed: dict,
                   expected_folds: int) -> pd.DataFrame:
     """Rebuild portable results from fold checkpoints, also during a long run."""
     predictions, metrics, coefficients, convergence = [], [], [], []
+    if not completed:
+        raise ValueError("No completed folds to summarize.")
+    first_methods = tuple(next(iter(completed.values()))["methods"])
+    if any(tuple(fold["methods"]) != first_methods for fold in completed.values()):
+        raise ValueError("Completed folds have inconsistent optimizers.")
+    report_methods = ("original_constants", "train_mean", *first_methods)
     X = frame.loc[:, list(FEATURE_NAMES)].to_numpy(dtype=float)
     y = frame["MCC"].to_numpy(dtype=float)
     for label, train, test in dataset_folds(frame, list(completed)):
         fold = completed[label]
         y_train, y_test = y[train], y[test]
-        for method in METHODS:
+        for method in report_methods:
             values = DEFAULT_COEFFICIENTS if method == "original_constants" else None
             if method in ("DE", "EGWO"):
                 values = np.asarray(fold["methods"][method]["coefficients"])
@@ -268,7 +308,7 @@ def write_results(directory: Path, frame: pd.DataFrame, completed: dict,
     oof = pd.concat(predictions, ignore_index=True)
     per_fold = pd.DataFrame(metrics)
     summary = []
-    for method in METHODS:
+    for method in report_methods:
         rows = oof[oof["method"] == method]
         for mode in ("raw", "clipped"):
             fold_scores = per_fold[(per_fold["method"] == method)
@@ -298,6 +338,8 @@ def parse_args(argv=None):
     parser.add_argument("--data", type=Path, default=META_DATASET_PATH)
     parser.add_argument("--output-dir", type=Path,
                         default=output_run_directory("recalibration", "hroch_equation"))
+    parser.add_argument("--methods", nargs="+", choices=("DE", "EGWO"), default=["DE", "EGWO"],
+                        help="Coefficient optimizers to run")
     parser.add_argument("--population-size", type=int, default=30)
     parser.add_argument("--iterations", type=int, default=100)
     parser.add_argument("--n-jobs", type=int, default=-1,
@@ -309,6 +351,8 @@ def parse_args(argv=None):
     parser.add_argument("--max-folds", type=int, help="Limit evaluated datasets for a smoke test; training still uses all other datasets")
     parser.add_argument("--resume", action="store_true", help="Reuse completed folds after checking data, code and settings")
     args = parser.parse_args(argv)
+    if len(args.methods) != len(set(args.methods)):
+        parser.error("Optimizer methods must not be repeated.")
     if args.population_size < 4 or args.iterations < 1:
         parser.error("Population size must be >= 4 and iterations must be >= 1.")
     if args.n_jobs == 0 or (args.max_folds is not None and args.max_folds < 1):
@@ -318,7 +362,10 @@ def parse_args(argv=None):
 
 def run(args) -> pd.DataFrame:
     bounds = coefficient_bounds(args.lower_factor, args.upper_factor)
+    data_sha256 = hashlib.sha256(args.data.read_bytes()).hexdigest()
     frame, original_rows = load_data(args.data, args.include_nonpositive)
+    if hashlib.sha256(args.data.read_bytes()).hexdigest() != data_sha256:
+        raise ValueError("Input data changed while being read.")
     labels = sorted(frame["Dataset"].unique().tolist())
     selected = labels if args.datasets is None else [label for label in labels if label in args.datasets]
     unknown = sorted(set(args.datasets or ()) - set(labels))
@@ -326,10 +373,13 @@ def run(args) -> pd.DataFrame:
         raise ValueError(f"Unknown or filtered-out datasets: {unknown}")
     if args.max_folds is not None:
         selected = selected[:args.max_folds]
-    source_files = [Path(__file__), Path(__file__).resolve().parents[2] / "equations" / "hroch.py"]
+    source_root = Path(__file__).resolve().parents[2]
+    source_files = [Path(__file__), source_root / "equations" / "hroch.py",
+                    source_root / "utils" / "pipeline_integrity.py",
+                    source_root / "utils" / "artifact_integrity.py", source_root / "paths.py"]
     configuration = {
-        "schema_version": 1, "equation": "eq2_six_coefficients", "protocol": "LODO_fixed_form_coefficient_recalibration",
-        "limitation": LIMITATION, "data_sha256": hashlib.sha256(args.data.read_bytes()).hexdigest(),
+        "schema_version": 2, "equation": "eq2_six_coefficients", "protocol": "LODO_fixed_form_coefficient_recalibration",
+        "limitation": LIMITATION, "data_sha256": data_sha256,
         "code_sha256": hashlib.sha256(b"".join(path.read_bytes() for path in source_files)).hexdigest(),
         "versions": {name: version(name) for name in ("pyBlindOpt", "EmptySpaceSearch", "torann", "joblib", "numpy", "pandas", "scipy")},
         "original_rows": original_rows, "included_rows": len(frame),
@@ -339,6 +389,7 @@ def run(args) -> pd.DataFrame:
         "initial_coefficients": DEFAULT_COEFFICIENTS.tolist(), "bounds": bounds.tolist(),
         "objective": "raw_training_MSE", "clipping": "training_fold_target_range_for_reporting_only",
         "population_size": args.population_size, "iterations": args.iterations,
+        "methods": list(args.methods),
         "seed": RANDOM_SEED, "n_jobs": args.n_jobs,
         "effective_workers": min(args.population_size, effective_n_jobs(args.n_jobs)),
         "parallelism": "candidate evaluation in loky processes; ordered results; one inner thread per worker",
@@ -347,6 +398,7 @@ def run(args) -> pd.DataFrame:
         "DE": {"variant": "best/1/bin", "F": 0.5, "cr": 0.7}, "EGWO": "pyBlindOpt defaults",
     }
     prepare_output(args.output_dir, configuration, args.resume)
+    run_config_sha256 = hashlib.sha256(json.dumps(configuration, sort_keys=True, allow_nan=False).encode()).hexdigest()
     X = frame.loc[:, list(FEATURE_NAMES)].to_numpy(dtype=float)
     y = frame["MCC"].to_numpy(dtype=float)
     completed = {}
@@ -360,14 +412,18 @@ def run(args) -> pd.DataFrame:
         checkpoint = args.output_dir / "folds" / f"fold_{index:03d}.json"
         if args.resume and checkpoint.is_file():
             fold = json.loads(checkpoint.read_text(encoding="utf-8"))
-            if fold["dataset"] != label:
-                raise ValueError(f"Checkpoint dataset mismatch: {checkpoint}")
+            validate_fold_checkpoint(
+                fold, label=label, row_ids=frame.loc[test, "row_id"].tolist(),
+                n_train=int(train.sum()), bounds=bounds, methods=args.methods,
+                n_iter=args.iterations, run_config_sha256=run_config_sha256,
+            )
             print(f"[{position}/{len(selected)}] {label}: reused completed fold", flush=True)
         else:
             print(f"[{position}/{len(selected)}] {label}: train={train.sum()}, test={test.sum()}, seed={RANDOM_SEED}", flush=True)
             fold = calibrate_fold(X[train], y[train], bounds, n_pop=args.population_size,
-                                  n_iter=args.iterations, n_jobs=args.n_jobs, dataset_label=label)
-            fold["dataset"] = label
+                                  n_iter=args.iterations, n_jobs=args.n_jobs, dataset_label=label, methods=args.methods)
+            fold.update({"dataset": label, "row_ids": frame.loc[test, "row_id"].tolist(),
+                         "n_train": int(train.sum()), "run_config_sha256": run_config_sha256})
             atomic_json(checkpoint, fold)
             print("  " + "; ".join(f"{method} train MSE={detail['train_mse']:.6g}"
                                      for method, detail in fold["methods"].items()), flush=True)

@@ -1,0 +1,36 @@
+{
+  "evaluation_partition": "row-wise test",
+  "n_test": 4665,
+  "coefficients": [
+    4.865837522725318,
+    1.1256530281989316,
+    3.5256330733899675,
+    12.507643915250597,
+    2.132726876109822,
+    -0.009773204206524137
+  ],
+  "derivative_method": "analytic quotient and chain rules for all 19 descriptors",
+  "derivative_zero_tolerance": 0.0,
+  "derivative_scope": "Raw equation; all other descriptors and coefficients held fixed.",
+  "category_interpretation": "Arithmetic derivatives for category and heuristic codes are conditional on the documented encoding, not intrinsic category distances or causal effects.",
+  "invalid_raw_predictions": 0,
+  "raw_above_mcc_upper_bound": 138,
+  "raw_below_mcc_lower_bound": 0,
+  "share_raw_above_one_all_test": 0.029581993569131833,
+  "minimum_test_gravity": 0.3888176906456932,
+  "gravity_audit_rows": 25836,
+  "minimum_corpus_gravity": 0.3888176906456932,
+  "zero_corpus_gravity": 0,
+  "zero_gravity_handling": "No substitute value. Singular outputs remain invalid predictions.",
+  "test_metrics_raw": {
+    "n": 4665,
+    "invalid_predictions": 0,
+    "r2": 0.5843677922202305,
+    "mae": 0.14175905917517143,
+    "rmse": 0.18753592546786862
+  },
+  "outputs": [
+    "hroch_test_derivatives.csv",
+    "hroch_derivative_signs.csv"
+  ]
+}

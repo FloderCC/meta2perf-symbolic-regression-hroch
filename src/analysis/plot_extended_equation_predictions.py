@@ -1,6 +1,9 @@
 # results based on dataset features
 
 
+import argparse
+from pathlib import Path
+
 import random
 import warnings
 import pandas as pd
@@ -8,6 +11,7 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.metrics import r2_score, mean_absolute_error
+from src.equations.extended import predict
 from src.utils.pipeline_integrity import read_meta_dataset
 from src.paths import META_DATASET_PATH, ensure_output_directories, output_run_directory
 
@@ -102,7 +106,10 @@ random.seed(random_seed)
 warnings.filterwarnings("ignore")
 
 ensure_output_directories(OUTPUT_DIR)
-df_meta = read_meta_dataset(META_DATASET_PATH)
+parser = argparse.ArgumentParser(description='Plot the final DEAP equation on corrected descriptors.')
+parser.add_argument('--data', type=Path, default=META_DATASET_PATH)
+args = parser.parse_args()
+df_meta = read_meta_dataset(args.data)
 df_meta = df_meta.drop(columns=["Seed", "Dataset", "Sample Size", "Model"])
 target_column = 'MCC'
 
@@ -132,286 +139,7 @@ df_test[target_column] = y_test
 
 # /// Model test begin \\\ #
 
-# --- Symbolic regression expression ---
-
-import numpy as np
-
-
-def predict(
-    df,
-    C_4_44=4.44,
-    C_20_65=20.65,
-    C_0_29=0.29,
-    C_0_31=0.31,
-    C_16_53=16.53,
-    C_0_62=0.62,
-    C_3_92=3.92,
-    C_48_25=48.25,
-    C_49_93=49.93,
-    C_37_97=37.97,
-    C_1_75=1.75,
-    C_0_98=0.98,
-    C_31_51=31.51,
-    C_33_56=33.56,
-    C_12_03=12.03,
-    C_9_23=9.23,
-    C_39_37=39.37,
-    C_33_34=33.34,
-    C_77_11=77.11
-):
-    # Make a copy so the original dataframe is not modified
-    df = df.copy()
-
-    # parsing the features names to x0, x1, x2, ...
-    original_cols = list(df.columns)
-    for i, col in enumerate(original_cols):
-        df = df.rename(columns={col: f'x{i}'})
-        print(col, '->', f'x{i}')
-
-    X0  = df['x0']
-    X1  = df['x1']
-    X2  = df['x2']
-    X3  = df['x3']
-    X4  = df['x4']
-    X5  = df['x5']
-    X6  = df['x6']
-    X7  = df['x7']
-    X8  = df['x8']
-    X9  = df['x9']
-    X10 = df['x10']
-    X11 = df['x11']
-    X12 = df['x12']
-    X13 = df['x13']
-    X14 = df['x14']
-    X15 = df['x15']
-    X16 = df['x16']
-    X17 = df['x17']
-    X18 = df['x18']
-
-    # -------------------------
-    # T1
-    # -------------------------
-    T1 = (
-        X7
-        + (
-            X6 / (
-                X14
-                + X4 * X18
-                * (np.sqrt(np.exp(np.exp(X15))) - X6 + X13)
-                * np.log(C_4_44)
-            )
-        )
-        + np.sqrt(X11 / X3)
-    )
-
-    # -------------------------
-    # T2
-    # -------------------------
-    T2 = (
-        X11 / (
-            X4
-            + np.exp(X9)
-            * (
-                -C_20_65
-                + X4 * np.exp(np.sqrt(X3))
-                * (
-                    np.exp(X5 / C_0_29) ** 3
-                    / (X2 ** 2 - C_0_31)
-                )
-            )
-            * (C_16_53 / (X3 * X8))
-        )
-        + X11 / (
-            X18 * np.log(X3)
-            + 2 * (X13 + X14)
-        )
-    )
-
-    # -------------------------
-    # T3
-    # -------------------------
-    T3 = (
-        X11 / (
-            X6
-            + (
-                X1 / X10
-                + X18
-                * (
-                    X16
-                    + X18 ** 3
-                    * np.exp(np.sqrt(X3))
-                    * (C_0_62 / np.exp(np.exp(X18)))
-                )
-                * (X2 / (np.sqrt(X1) ** 3))
-                * (X18 ** 3 / X1)
-            ) / X13
-        )
-        + X1 / (X12 + X10)
-        + X15
-        * (
-            (
-                np.sqrt(X2)
-                / (
-                    (
-                        np.sqrt(X3)
-                        / (
-                            (
-                                X0 ** 6
-                                + (np.sqrt(np.log(X1) ** 9)) ** 3
-                            )
-                            / (
-                                C_0_29
-                                + (
-                                    (X4 * np.exp(X18))
-                                    / (X2 * X11)
-                                ) ** 162
-                            )
-                            + X17
-                        )
-                    )
-                    / (
-                        X16 ** 2
-                        + (X0 * X1) ** 3
-                        * X17
-                        * np.log(X2) ** 6
-                        + X16
-                    )
-                )
-            ) ** (1 / 8)
-        )
-    )
-
-    # -------------------------
-    # T4
-    # -------------------------
-    T4 = (
-        np.sqrt(X9 / X11)
-        + (
-            X11 / (
-                np.exp(
-                    X5
-                    / (
-                        (X6 - C_3_92) * np.exp(X15)
-                        + X1
-                    )
-                )
-                + X1 / X8
-            )
-            + C_48_25 * X15
-            + X10
-        )
-        / (
-            X4
-            + C_49_93 * (X3 / X2)
-        )
-        + C_3_92 / (np.exp(X6) - X5)
-    )
-
-    # -------------------------
-    # T5
-    # -------------------------
-    T5 = (
-        X1 / (
-            np.exp(
-                3 * X5 / (
-                    X11 / (
-                        np.exp(
-                            X11 / (X4 - C_37_97)
-                        )
-                        + X7
-                    )
-                    + X9 * X15
-                    + X18
-                )
-            )
-            + C_1_75
-            * (
-                X3
-                / (
-                    np.exp(3 * X0 ** 3)
-                    + np.exp(X5)
-                )
-            )
-        )
-        + X1 / (
-            np.exp(3 * np.sqrt(X10 / X3))
-            + np.exp(3 * X0 ** 3) * X18
-        )
-        + X7
-        + X1 / (
-            X5
-            + X14
-            + C_0_98
-            * (
-                X11
-                + (
-                    X12 ** 2 * np.exp(X12)
-                ) / (X11 ** 2)
-            )
-            * (X11 / X8)
-        )
-        - X4 / C_31_51
-    )
-
-    # -------------------------
-    # T6
-    # -------------------------
-    T6 = (
-        X11 / (
-            X10
-            + (
-                X2 / X10
-                + C_33_56
-                * (X2 + np.exp(X12))
-                * (C_12_03 / X8)
-            )
-            / (
-                (
-                    X10 ** 2
-                    * X14
-                    * np.exp(X18 ** 3)
-                ) / C_37_97
-                + X6 ** 3
-            )
-        )
-        + C_77_11 / (
-            X4
-            + (
-                -C_9_23 / X10
-                + X6
-                * (
-                    np.exp(np.exp(X0))
-                    + np.log(X2)
-                    * np.exp(np.sqrt(X3))
-                    * (X2 / X8)
-                )
-                * ((X2 - C_9_23) / X8)
-            )
-            / (X3 - X13)
-        )
-        + (X9 - X4 - C_39_37)
-        / (
-            X4
-            + X17 * (
-                (X11 - X5) ** 2 / X0
-            )
-        )
-        + C_33_34
-    )
-
-    F = C_33_56 / (T1 + T2 + T3 + T4 + T5 + T6)
-
-    return F
-
-    # original full equation:
-    # return div(33.5638701915741, add(X7, add(div(X6, add(X14, mul(X4, mul(X18, mul(add(sub(sqrt(exp(exp(X15))), X6), X13), log(4.443030977881925)))))), add(sqrt(div(X11, X3)), add(div(X11, add(X4, mul(mul(exp(X9), add(-20.653032127428073, mul(mul(X4, exp(sqrt(X3))), div(sq3(exp(identity(div(X5, identity(0.2931779161181822))))), sub(sq2(X2), 0.3120032833018058))))), div(identity(div(16.527167914853564, X3)), X8)))), add(div(X11, add(add(mul(X18, log(X3)), add(X13, X14)), add(X13, X14))), add(div(X1, add(X12, X10)), add(add(div(X11, add(X6, div(add(div(X1, X10), mul(mul(mul(X18, add(X16, mul(mul(sq3(X18), exp(sqrt(X3))), div(0.6167516132111217, exp(exp(X18)))))), div(X2, sq3(sqrt(X1)))), div(sq3(X18), X1))), X13))), mul(sqrt(sqrt(sqrt(div(sqrt(X2), div(div(sqrt(X3), add(div(add(sq3(sq2(X0)), sq3(sqrt(sq3(sq3(log(X1)))))), add(0.2931779161181822, sq3(sq3(sq3(sq3(div(sq2(mul(div(X4, X2), exp(X18))), sq2(X11)))))))), X17)), add(add(sq2(X16), mul(mul(sq3(mul(X0, X1)), X17), sq2(sq3(log(X2))))), X16)))))), X15)), add(sqrt(div(X9, X11)), add(div(add(add(div(X11, add(exp(identity(div(X5, add(mul(sub(X6, 3.922823513181264), exp(X15)), X1)))), div(X1, X8))), mul(48.251286620685036, X15)), X10), add(X4, mul(49.92924580592823, div(X3, X2)))), add(div(3.922823513181264, sub(exp(X6), X5)), add(div(X1, add(sq3(exp(identity(div(X5, add(add(div(X11, add(exp(identity(div(X11, sub(X4, 37.97287145620216)))), X7)), mul(X9, X15)), X18))))), mul(1.7488105760395811, div(X3, add(sq3(exp(sq3(X0))), exp(X5)))))), add(div(X1, add(sq3(exp(identity(div(sqrt(X10), sqrt(X3))))), mul(sq3(exp(sq3(X0))), X18))), add(X7, add(div(X1, add(add(X5, X14), mul(mul(0.9773512415938796, add(X11, mul(mul(X12, exp(X12)), div(X12, sq2(X11))))), div(X11, X8)))), add(div(X4, -31.513873970639562), add(div(X11, add(X10, div(add(div(X2, X10), mul(mul(33.5638701915741, add(X2, exp(X12))), div(12.032890547823584, X8))), add(div(mul(sq2(X10), X14), div(37.97287145620216, exp(sq3(X18)))), sq3(X6))))), add(div(add(33.5638701915741, 43.55355368057943), add(X4, div(add(div(-9.22508859226695, X10), mul(mul(X6, add(exp(exp(X0)), mul(mul(log(X2), exp(sqrt(X3))), div(X2, X8)))), div(add(X2, -9.22508859226695), X8))), sub(X3, X13)))), add(div(add(-39.368376250880644, sub(X9, X4)), add(X4, mul(X17, div(identity(sq2(sub(X11, X5))), X0)))), 33.33746993153734)))))))))))))))))))
-
-
-
-# --- Rename columns to match expression variable names ---
-# Converts 'nr_attr' -> 'nrattr', etc.
-df_train.columns = [col.lower().replace('_', '') for col in df_train.columns]
-df_test.columns = [col.lower().replace('_', '') for col in df_test.columns]
+# Evaluate the canonical final equation without changing column names.
 
 # inferencing the train dataset
 y_pred_train = predict(df_train)

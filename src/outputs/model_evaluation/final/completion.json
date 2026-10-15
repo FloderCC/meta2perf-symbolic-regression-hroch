@@ -1,0 +1,24 @@
+{
+  "complete": true,
+  "execution_finished": true,
+  "smoke_test": false,
+  "positive_population_lodo_complete": true,
+  "finite_lodo_predictions_and_metrics": true,
+  "shap_skipped": false,
+  "source_tables_preserved": true,
+  "scopes": [
+    "positive"
+  ],
+  "mcc_filter": "MCC > 0",
+  "positive_mcc_datasets": 65,
+  "results": "src/outputs/model_evaluation/final",
+  "config_sha256": "56832b42a89d6af170aaabdeba0969671edb98550f6c759bc0154ebaa92990fb",
+  "independent_analyses_reused": true,
+  "symbolic_rowwise_procedure": "direct evaluation of supplied final equations",
+  "newly_fitted_stages": [
+    "symbolic_LODO"
+  ],
+  "manuscript_analyses_ready": true,
+  "published_config_sha256": "ed245664c3b32f081ecc24d2824ced20e02f26fefe4d6eb7ea7f93a2156062bd",
+  "configuration_note": "Execution fingerprints identify the original run. published_config_sha256 fingerprints the included configuration; file references use available repository artifacts."
+}

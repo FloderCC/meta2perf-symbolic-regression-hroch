@@ -1,79 +1,82 @@
 # Repository organization
 
-All source files, datasets, caches and generated artifacts remain inside `src`.
-The reorganization moves or renames existing files and updates their references;
-it does not discard scripts, datasets, reports, logs, figures or checkpoints.
+Source modules, datasets, caches and generated artifacts are organized under
+`src`. Repository checks are in `tools/`.
 
 ## Code directories
 
 | Directory | Responsibility |
 |---|---|
-| `pipeline/` | Base-classifier tuning, held-out evaluation, dataset meta-features and meta-dataset construction. |
+| `pipeline/` | Base-classifier tuning, held-out evaluation, dataset meta-features, meta-dataset construction and final meta-model evaluation. |
 | `experiments/hroch/` | HROCH symbolic-regression training. |
-| `experiments/baselines/` | Reference meta-regressor comparison. |
+| `experiments/baselines/` | Training-only reference-configuration selection and meta-regressor comparison. |
 | `experiments/genetic_programming/` | GP hyperparameter screening, refinement and three configured long runs. |
 | `experiments/recalibration/` | Fixed-equation leave-one-dataset-out coefficient recalibration. |
-| `analysis/` | Random-forest explanations and prediction, correlation and SHAP figures. |
+| `analysis/` | Model diagnostics, directional checks, random-forest explanations and prediction, correlation and SHAP figures. |
 | `equations/` | Extended equation with 19 constants and HROCH equation with six constants. |
 | `utils/` | Shared data processing, base-classifier construction, regression metrics and GP operations. |
 | `datasets/` | Existing source CSV files and per-dataset documentation; their locations are unchanged. |
-| `docs/` | Scientific documentation, this guide and the move inventory. |
+| `docs/` | Scientific definitions, execution protocols and repository guides. |
 
 `paths.py` centralizes all locations. `experiment_config.py` retains the dataset,
 classifier, seed, fraction and split settings. Package `__init__.py` files allow
 entry points to be invoked with `python -m` from the repository root.
 
-## Script mapping
+## Current entry points
 
-Paths in this table are relative to `src`.
+Paths below are relative to `src`; invoke modules with `python -m` from the
+repository root.
 
-| Original path | Current path |
+| Module | Purpose |
 |---|---|
-| `tune_base_classifiers.py` | `pipeline/tune_base_classifiers.py` |
-| `evaluate_base_classifiers.py` | `pipeline/evaluate_base_classifiers.py` |
-| `extract_dataset_metafeatures.py` | `pipeline/extract_dataset_metafeatures.py` |
-| `build_meta_dataset.py` | `pipeline/build_meta_dataset.py` |
-| `fit_symbolic_regression.py` | `experiments/hroch/train.py` |
-| `benchmark_meta_regressors.py` | `experiments/baselines/benchmark.py` |
-| `exp_perf_beam_grid_search.py` | `experiments/genetic_programming/search_hyperparameters.py` |
-| `exp_perf_beam_grid_search_top10.py` | `experiments/genetic_programming/refine_top_configurations.py` |
-| `exp_perf_beam_grid_search_top10_s1.py` | `experiments/genetic_programming/train_configuration_01.py` |
-| `exp_perf_beam_grid_search_top10_s2.py` | `experiments/genetic_programming/train_configuration_02.py` |
-| `exp_perf_beam_grid_search_top10_s3.py` | `experiments/genetic_programming/train_configuration_03.py` |
-| `exp_perf_lodo_recalibration.py` | `experiments/recalibration/recalibrate_extended_equation_lodo.py` |
-| `exp_perf_lodo_recalibration_eq2.py` | `experiments/recalibration/recalibrate_hroch_equation_lodo.py` |
-| `explain_random_forest.py` | `analysis/explain_random_forest.py` |
-| `plot_feature_correlations.py` | `analysis/plot_feature_correlations.py` |
-| `plot_shap_relevance.py` | `analysis/plot_shap_relevance.py` |
-| `plot_symbolic_regression.py` | `analysis/plot_hroch_predictions.py` |
-| `plot_reg_model.py` | `analysis/plot_extended_equation_predictions.py` |
-| `meta_analysis.py` | `utils/meta_regression.py` |
-| `utils/dataset_utils.py` | `utils/dataset_processing.py` |
-| `utils/model_utils.py` | `utils/base_classifiers.py` |
-| `utils/ga_initialization.py` | `utils/gp_initialization.py` |
-| `utils/gp_custom_operators.py` | `utils/gp_operators.py` |
-| `utils/fixed_equation.py` | `equations/extended.py` |
-| `utils/fixed_equation_eq2.py` | `equations/hroch.py` |
+| `pipeline/tune_base_classifiers.py` | Tune base classifiers on each task. |
+| `pipeline/evaluate_base_classifiers.py` | Evaluate the selected base classifiers. |
+| `pipeline/extract_dataset_metafeatures.py` | Extract dataset descriptors. |
+| `pipeline/build_meta_dataset.py` | Join dataset descriptors, model descriptors and MCC targets. |
+| `pipeline/evaluate_meta_models.py` | Evaluate symbolic and reference predictors, LODO and diagnostics. |
+| `experiments/hroch/train.py` | Search for a HROCH symbolic expression. |
+| `experiments/baselines/benchmark.py` | Compare reference meta-regressors using joint or dataset-only descriptors. |
+| `experiments/baselines/select_configurations.py` | Select reference configurations using the training partition. |
+| `experiments/baselines/benchmark_lodo.py` | Fit and evaluate fixed reference configurations across dataset folds. |
+| `experiments/genetic_programming/search_hyperparameters.py` | Screen DEAP configurations. |
+| `experiments/genetic_programming/refine_top_configurations.py` | Refine the selected DEAP configurations. |
+| `experiments/genetic_programming/train_configuration_01.py` | Run the first configured DEAP search. |
+| `experiments/genetic_programming/train_configuration_02.py` | Run the second configured DEAP search. |
+| `experiments/genetic_programming/train_configuration_03.py` | Run the third configured DEAP search. |
+| `experiments/recalibration/recalibrate_extended_equation_lodo.py` | Fit grouped DEAP coefficients within dataset folds. |
+| `experiments/recalibration/recalibrate_hroch_equation_lodo.py` | Fit HROCH coefficients within dataset folds. |
+| `analysis/model_diagnostics.py` | Produce correlations, derivative checks and TreeSHAP. |
+| `analysis/explain_random_forest.py` | Fit the joint Random Forest and calculate KernelSHAP values. |
+| `analysis/plot_feature_correlations.py` | Plot descriptor correlations. |
+| `analysis/plot_shap_relevance.py` | Plot saved SHAP relevance values. |
+| `analysis/plot_hroch_predictions.py` | Plot the final HROCH predictions. |
+| `analysis/plot_extended_equation_predictions.py` | Plot the final grouped DEAP predictions. |
+| `analysis/plot_symbolic_comparison.py` | Plot both symbolic predictors on the shared test partition. |
 
-`paths.py`, `experiment_config.py`, `src/__init__.py` and `utils/__init__.py`
-retain their locations. All three GP configuration scripts remain separate;
-their numbers identify configurations, and all three retain random seed 42.
+The final evaluation stage is `pipeline/evaluate_meta_models.py`, invoked after
+`pipeline/build_meta_dataset.py` or directly with the prepared input tables.
+It calls `experiments/baselines/select_configurations.py` for reference settings,
+the existing LODO experiments for grouped fitting, and
+`analysis/model_diagnostics.py` for correlations, derivative checks and TreeSHAP.
+The command and protocol are described in
+[Reproducibility](reproducibility.md#meta-model-evaluation).
 
-`analysis/plot_symbolic_comparison.py` is the standalone generator of the paper's
-two-panel HROCH/DEAP prediction figure. It reads the archived full-precision DEAP
-configuration 02 expression and the fixed HROCH equation using repository
-inputs. Its PDF, PNG and train/test metric table are written below
-`outputs/figures/symbolic_comparison/<run_id>/`. Both X axes end at 1. The original
-temporary manuscript-integration files are retained under the ignored `tmp/`
-directory; the standalone generator does not depend on them.
+`analysis/plot_symbolic_comparison.py` independently generates the two-panel
+HROCH/DEAP prediction figure from the final canonical equations in `equations/`
+and the selected prepared meta-dataset. Its PDF, PNG and train/test metric table
+are written below `outputs/figures/symbolic_comparison/<run_id>/`. Both X axes
+end at 1. `--deap-summary` explicitly selects a historical prefix tree instead;
+its source checksum is recorded in the
+[reproducibility notes](reproducibility.md#gp-selection-and-fixed-equation-analyses).
 
 ## Output locations
 
 Existing artifacts are stored under these paths, relative to `src/outputs`:
 
-| Output | Archive location |
+| Output | Location |
 |---|---|
 | Four preparation/meta-dataset tables | `metadataset/archived/` |
+| Completed final meta-model evaluation | `model_evaluation/final/` |
 | HROCH log | `hroch/archived/run.log` |
 | Dataset-only reference-regressor log | `baselines/dataset_only/archived/run.log` |
 | Random-forest log and SHAP table | `random_forest_shap/archived/` |
@@ -88,9 +91,8 @@ Existing artifacts are stored under these paths, relative to `src/outputs`:
 | Extended-equation prediction figures and CSVs | `figures/extended_equation_predictions/archived/` |
 | Preprocessing audit reports | `preprocessing_audit/archived/<original_timestamp>/` |
 
-The old result index is now `src/outputs/README.md`; the old log index is
-`src/outputs/archived_logs.md`. Empty legacy directories may remain on disk:
-no directory cleanup or file deletion was performed.
+The [output index](../outputs/README.md) lists result files and their contents.
+The [log index](../outputs/archived_logs.md) links the available experiment logs.
 
 New experiments and figures use `src/outputs/<family>/<run_id>/`, with a UTC
 timestamp run id. For example:
@@ -107,7 +109,13 @@ src/outputs/genetic_programming/configuration_01/<run_id>/
 Screening and refinement produce one log and candidate table per evaluated
 configuration. LODO runs also retain their `run_config.json`, `folds/`,
 predictions, metrics, coefficients and convergence. Other experiments retain
-the outputs they already produced; no new training or scoring logic is added.
+the outputs they already produced.
+
+Meta-model evaluation uses `src/outputs/model_evaluation/<run_id>/`, with the
+completed final results in `model_evaluation/final/`. Each run records its input
+checksums, configuration and completion status. Start a fresh directory for a
+new execution. Fold and model checkpoints are local execution state; summaries,
+predictions and settings are retained as outputs.
 
 GP initial-population caches use `src/cache/gp_initial_populations/`.
 
@@ -131,8 +139,8 @@ GP initial-population caches use `src/cache/gp_initial_populations/`.
 - SHAP plotting reads the latest generated SHAP table, falling back to the
   archive. GP refinement follows the same rule for the screening summary and
   validates its context before use. Historical screening summaries are usable
-  only with the archived metadataset; old checkpoints and caches are preserved
-  and are not automatically reused.
+  only with the original data checksum pinned in `utils/gp_integrity.py`.
+  Checkpoints require matching compatibility metadata before reuse.
 - To resume a GP run, select its existing `META2PERF_RUN_ID` and enable its
   `RESUME_FROM_CHECKPOINT` setting. Its `run_context.json`, checkpoints, cache
   metadata and summaries must match the data, feature order, engine and package
@@ -141,21 +149,6 @@ GP initial-population caches use `src/cache/gp_initial_populations/`.
   To resume LODO, pass its existing
   `--output-dir` together with `--resume`; its data/code/settings checks remain.
 
-The structural validator remains at `tools/validate_repository.py`. Historical
-preprocessing-audit reports remain under `outputs/preprocessing_audit/archived/`;
-the current repository has no `audit_preprocessing.py` entry point. The README
-lists the current module commands for later use.
-
-## Preservation record
-
-[reorganization_manifest.csv](reorganization_manifest.csv) records all 346
-pre-existing files under `src`, with original and current paths, original size,
-SHA-256 where recorded, and whether reference edits are permitted. Raw source
-CSV files were inventoried by path and size and were not read for hashing.
-
-Archived CSV, JSON, log and figure contents are preserved byte for byte.
-Historical paths, code hashes and identifiers embedded inside those artifacts
-remain unchanged as provenance; the inventory translates their old locations.
-Source code and documentation are edited only to support the new organization
-and output conventions. No Python code, imports, compilation, training, tests
-or validators were executed for this change; review is static.
+The structural validator is `tools/validate_repository.py`. Preprocessing-audit
+reports are available under `outputs/preprocessing_audit/archived/`. The README
+lists the current module commands.

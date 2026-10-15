@@ -2,7 +2,6 @@
   "schema_version": 1,
   "protocol": "LODO_refitting_with_previously_selected_hyperparameters",
   "scope": "LODO refitting with fixed, previously selected hyperparameters. Historical selection used observations from the dataset collection later held out. This evaluation is conditional on those choices, not nested validation of hyperparameter selection. Random Forest uses the 19-descriptor winner; the other historical configurations were selected with 12 dataset descriptors and are reused here with the same 19 descriptors as SR.",
-  "data_path": "C:\\Datos\\IT projects\\6 Framework Cost of ML\\meta2perf-symbolic-regression-hroch\\src\\outputs\\metadataset\\archived\\meta_dataset.csv",
   "data_sha256": "e6cecac6725e83c957c0d7fbcb29a5a8d6685ed783a71d5992117b1b6348e5da",
   "code_sha256": "20deccaa482e859e1cd6f934b4dd324ee636584cdc07973e471f8cf043de85a8",
   "versions": {
@@ -186,13 +185,13 @@
   "preprocessing": "none: same raw descriptors as SR; no scaling or imputation",
   "sr_references": [
     {
-      "path": "C:\\Datos\\IT projects\\6 Framework Cost of ML\\meta2perf-symbolic-regression-hroch\\src\\outputs\\recalibration\\hroch_equation\\archived\\run_config.json",
+      "path": "src/outputs/recalibration/hroch_equation/archived/run_config.json",
       "sha256": "be304521673b314e82dd46054f0495d76cfebf3f0ca837ad2934df07183fa8cf",
       "recorded_data_sha256": "9de063c1d037c42fead8e4f47fb5b247ca8630c24815b7e871ee2d0972836c95",
       "input_match": "line_endings_only_CRLF"
     },
     {
-      "path": "C:\\Datos\\IT projects\\6 Framework Cost of ML\\meta2perf-symbolic-regression-hroch\\src\\outputs\\recalibration\\extended_equation\\archived\\run_config.json",
+      "path": "src/outputs/recalibration/extended_equation/archived/run_config.json",
       "sha256": "185fb245a3486d49397c82ca82d1922c40acaca461461f31a3731eb676f7f91f",
       "recorded_data_sha256": "9de063c1d037c42fead8e4f47fb5b247ca8630c24815b7e871ee2d0972836c95",
       "input_match": "line_endings_only_CRLF"
@@ -360,5 +359,6 @@
   "clipping": "training_fold_target_range_for_reporting_only",
   "bootstrap_repetitions": 2000,
   "bootstrap_seed": 42,
-  "interval_method": "approximate percentile 95% whole-dataset bootstrap of fixed OOF predictions; conditional on fitted folds and fixed hyperparameters"
+  "interval_method": "approximate percentile 95% whole-dataset bootstrap of fixed OOF predictions; conditional on fitted folds and fixed hyperparameters",
+  "configuration_note": "data_sha256 identifies the execution input version; file references list available repository artifacts."
 }

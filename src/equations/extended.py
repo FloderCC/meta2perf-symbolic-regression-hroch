@@ -1,8 +1,8 @@
-"""Fixed symbolic equation supplied for coefficient-only LODO recalibration.
+"""Final grouped DEAP equation for the corrected meta-dataset.
 
-The rounded constants and arithmetic are exactly those of the supplied predict
-function. Repeated constants share a parameter; integer powers stay fixed.
-Features use their original units, with no fitted scaling or imputation.
+The 19 supplied final constants are shared by evaluation and LODO fitting.
+Repeated constants share a parameter; integer powers stay fixed. Features use
+their original units, with no fitted scaling or imputation.
 """
 
 from __future__ import annotations
@@ -24,8 +24,13 @@ COEFFICIENT_NAMES = (
     "C_77_11",
 )
 DEFAULT_COEFFICIENTS = np.array([
-    4.44, 20.65, 0.29, 0.31, 16.53, 0.62, 3.92, 48.25, 49.93, 37.97,
-    1.75, 0.98, 31.51, 33.56, 12.03, 9.23, 39.37, 33.34, 77.11,
+    4.436387158962334, 21.017598763216697, 0.26149710186442016,
+    0.4370849413454668, 16.711964883971923, 0.708763384574498,
+    3.6748734018085374, 45.52942272372836, 83.39007680021791,
+    36.46003772076081, 1.652759610031753, 0.9071889832719622,
+    34.92368710274265, 32.38844287648101, 11.662600535000225,
+    9.243015416208092, 35.26855405622173, 31.600629130095175,
+    76.31302514262624,
 ], dtype=float)
 DEFAULT_COEFFICIENTS.setflags(write=False)
 
@@ -55,25 +60,25 @@ def predict(X, coefficients=None):
 
 def _evaluate(
     X,
-    C_4_44=4.44,
-    C_20_65=20.65,
-    C_0_29=0.29,
-    C_0_31=0.31,
-    C_16_53=16.53,
-    C_0_62=0.62,
-    C_3_92=3.92,
-    C_48_25=48.25,
-    C_49_93=49.93,
-    C_37_97=37.97,
-    C_1_75=1.75,
-    C_0_98=0.98,
-    C_31_51=31.51,
-    C_33_56=33.56,
-    C_12_03=12.03,
-    C_9_23=9.23,
-    C_39_37=39.37,
-    C_33_34=33.34,
-    C_77_11=77.11
+    C_4_44=4.436387158962334,
+    C_20_65=21.017598763216697,
+    C_0_29=0.26149710186442016,
+    C_0_31=0.4370849413454668,
+    C_16_53=16.711964883971923,
+    C_0_62=0.708763384574498,
+    C_3_92=3.6748734018085374,
+    C_48_25=45.52942272372836,
+    C_49_93=83.39007680021791,
+    C_37_97=36.46003772076081,
+    C_1_75=1.652759610031753,
+    C_0_98=0.9071889832719622,
+    C_31_51=34.92368710274265,
+    C_33_56=32.38844287648101,
+    C_12_03=11.662600535000225,
+    C_9_23=9.243015416208092,
+    C_39_37=35.26855405622173,
+    C_33_34=31.600629130095175,
+    C_77_11=76.31302514262624
 ):
     (X0, X1, X2, X3, X4, X5, X6, X7, X8, X9, X10, X11, X12, X13, X14, X15, X16, X17, X18) = X.T
 

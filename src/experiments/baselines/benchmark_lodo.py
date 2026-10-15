@@ -152,6 +152,8 @@ def verify_sr_inputs(paths: list[Path], frame: pd.DataFrame, original_rows: int,
         "line_endings_only_CRLF": hashlib.sha256(normalized.replace(b"\n", b"\r\n")).hexdigest(),
     }
     references = []
+    if not paths:
+        raise ValueError("At least one SR configuration must establish the input lineage.")
     for path in paths:
         recorded = json.loads(path.read_text(encoding="utf-8"))
         mismatched = [key for key, value in expected.items() if recorded.get(key) != value]
@@ -205,12 +207,15 @@ def prepare_output(directory: Path, config: dict, resume: bool) -> None:
 
 
 def validate_checkpoint(fold: dict, label: str, name: str, row_ids: list[int],
-                        effective_parameters: dict, expected_fold: dict) -> None:
+                        effective_parameters: dict, expected_fold: dict,
+                        run_config_sha256: str | None = None) -> None:
     if (fold.get("dataset") != label or fold.get("method") != name
             or fold.get("row_ids") != row_ids or fold.get("seed") != SEED
             or any(fold.get(key) != value for key, value in expected_fold.items())
             or fold.get("effective_parameters") != effective_parameters):
         raise ValueError(f"Checkpoint metadata mismatch for {label} / {name}.")
+    if run_config_sha256 is not None and fold.get("run_config_sha256") != run_config_sha256:
+        raise ValueError(f"Checkpoint run provenance mismatch for {label} / {name}.")
     predictions = np.asarray(fold.get("predictions_raw"), dtype=float)
     if predictions.shape != (len(row_ids),) or not np.isfinite(predictions).all():
         raise ValueError(f"Invalid checkpoint predictions for {label} / {name}.")
@@ -334,7 +339,7 @@ def parse_args(argv=None):
     parser.add_argument("--sr-config", nargs="+", type=Path, default=list(DEFAULT_SR_CONFIGS),
                         help="SR run_config.json files whose inputs must match exactly (default: both archived runs)")
     parser.add_argument("--hyperparameters", type=Path,
-                        help="Optional JSON mapping all five class names to their fixed parameter dictionaries")
+                        help="JSON mapping selected regressor class names to their previously selected parameter dictionaries")
     parser.add_argument("--models", nargs="+", choices=list(MODEL_CLASSES), default=list(MODEL_CLASSES))
     parser.add_argument("--datasets", nargs="+", help="Evaluate only these datasets; every other dataset still trains each fold")
     parser.add_argument("--max-folds", type=int, help="Limit evaluation for a smoke test; does not shrink fold training sets")
@@ -366,8 +371,9 @@ def run(args) -> pd.DataFrame | None:
     parameters = copy.deepcopy(FIXED_PARAMETERS)
     if args.hyperparameters:
         parameters = json.loads(args.hyperparameters.read_text(encoding="utf-8"))
-        if not isinstance(parameters, dict) or set(parameters) != set(MODEL_CLASSES):
-            raise ValueError("Hyperparameter JSON must map exactly the five regressor class names.")
+        if (not isinstance(parameters, dict) or set(parameters) - set(MODEL_CLASSES)
+                or not set(args.models) <= set(parameters)):
+            raise ValueError("Hyperparameter JSON must contain every selected regressor and only documented model names.")
         if any(not isinstance(value, dict) for value in parameters.values()):
             raise ValueError("Each hyperparameter entry must be a parameter dictionary.")
     # Construct before training so unknown parameter names fail even in a dry run.
@@ -390,7 +396,7 @@ def run(args) -> pd.DataFrame | None:
     sources = (Path(__file__), ROOT / "src/equations/hroch.py", ROOT / "src/utils/pipeline_integrity.py",
                ROOT / "src/utils/artifact_integrity.py", ROOT / "src/paths.py")
     config = {
-        "schema_version": 1, "protocol": "LODO_refitting_with_previously_selected_hyperparameters",
+        "schema_version": 2, "protocol": "LODO_refitting_with_previously_selected_hyperparameters",
         "scope": (SCOPE if not args.hyperparameters else
                   "LODO refitting conditional on user-supplied fixed hyperparameters; their original selection is outside this evaluation."),
         "data_path": str(args.data.resolve()), "data_sha256": data_hash,
@@ -414,6 +420,7 @@ def run(args) -> pd.DataFrame | None:
         print(json.dumps({"parameters": effective, "provenance": provenance}, indent=2), flush=True)
         return None
     prepare_output(args.output_dir, config, args.resume)
+    run_config_sha256 = hashlib.sha256(json.dumps(config, sort_keys=True, allow_nan=False).encode()).hexdigest()
     atomic_csv(args.output_dir / "selected_rows.csv", frame.loc[:, ["row_id", *IDENTIFIERS, "MCC"]])
     X = frame.loc[:, list(FEATURE_NAMES)].to_numpy(dtype=float)
     y = frame["MCC"].to_numpy(dtype=float)
@@ -438,12 +445,14 @@ def run(args) -> pd.DataFrame | None:
             checkpoint = args.output_dir / "folds" / f"fold_{index:03d}_{name}.json"
             if args.resume and checkpoint.is_file():
                 fitted = json.loads(checkpoint.read_text(encoding="utf-8"))
-                validate_checkpoint(fitted, label, name, row_ids, effective[name], fold_info)
+                validate_checkpoint(fitted, label, name, row_ids, effective[name], fold_info,
+                                    run_config_sha256)
                 print(f"[{position}/{len(folds)}] {label} / {name}: reused completed fit", flush=True)
             else:
                 print(f"[{position}/{len(folds)}] {label} / {name}: train={train.sum()}, test={test.sum()}", flush=True)
                 fitted = fit_fold(name, parameters, args.n_jobs, X[train], y[train], X[test])
-                fitted.update({**fold_info, "method": name, "row_ids": row_ids, "seed": SEED})
+                fitted.update({**fold_info, "method": name, "row_ids": row_ids, "seed": SEED,
+                               "run_config_sha256": run_config_sha256})
                 atomic_json(checkpoint, fitted)
                 print(f"  saved in {fitted['fit_predict_seconds']:.2f}s; warnings={len(fitted['warnings'])}", flush=True)
             completed[label, name] = fitted
